@@ -1,0 +1,14 @@
+.img-user {
+  width: 45px;
+  height: 45PX;
+}
+
+.bafge-position {
+  position: absolute;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #263238 !important;
+  border-color: #263238 !important;
+}
