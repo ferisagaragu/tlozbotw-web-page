@@ -48,7 +48,7 @@ class NotificationLayoutComponent extends Component<Props, State> {
                   }
                 </Col>
                 
-                <Col md={ 8 } className="ml-3 mr-4">
+                <Col md={ 8 } className="ml-3 mr-2">
                   <b>
                     { notify.title }
                   </b>
@@ -60,20 +60,21 @@ class NotificationLayoutComponent extends Component<Props, State> {
                 
                 <Col md={ 1 } className="notify-text">
                   <Link to={ notify.link }>
-                    <Button 
-                      variant="outline-dark"
+                    <button
+                      className="button-notify btn-hover color-1"
                     >
                       <FontAwesomeIcon icon="eye"/>
-                    </Button>
+                    </button>
                   </Link>
+                </Col>
 
-                  <Button 
-                    className="ml-2"
-                    variant="outline-dark"
+                <Col md={ 1 }>
+                  <button 
+                    className="button-notify-cancel btn-hover color-11"
                     onClick={ () => onErase(index) }
                   >
                     <FontAwesomeIcon icon="times"/>
-                  </Button>
+                  </button>
                 </Col>
               </Row>
             )) 

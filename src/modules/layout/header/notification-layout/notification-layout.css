@@ -11,27 +11,21 @@
 }
 
 .notify-info {
-  border-radius: 50px;
-  border-color: #0053ff;
-  border-width: 1px;
-  border-style: solid;
-  padding: 20px;
+  border: 1px solid;
+  border-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed) 1;
+  padding: 8px;
 }
 
 .notify-warning {
-  border-radius: 50px;
-  border-color: #ffe021;
-  border-width: 1px;
-  border-style: solid;
-  padding: 20px;
+  border: 1px solid;
+  border-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19) 1;
+  padding: 8px;
 }
 
 .notify-error {
-  border-radius: 50px;
-  border-color: #c00000;
-  border-width: 1px;
-  border-style: solid;
-  padding: 20px;
+  border: 1px solid;
+  border-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f) 1;
+  padding: 8px;
 }
 
 .notify-text {
@@ -41,4 +35,15 @@
 
 .icon {
   font-size: 40px;
+}
+
+.button-notify {
+  width: 50px !important;
+  height: 30px !important;
+}
+
+.button-notify-cancel {
+  margin-top: 27px !important; 
+  width: 50px !important;
+  height: 30px !important;
 }
