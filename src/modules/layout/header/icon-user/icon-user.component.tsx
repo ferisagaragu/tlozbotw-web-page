@@ -5,7 +5,6 @@ import BadgeIndicatorComponent from '../badge-indicator/badge-indicator.componen
 import { UserMenuModel } from '../../../../core/models/user-menu.model';
 import './icon-user.css';
 
-
 interface Props { 
   userImg: string;
   notificationIndicator: number;
