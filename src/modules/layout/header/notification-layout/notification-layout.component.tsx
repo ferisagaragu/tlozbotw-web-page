@@ -34,17 +34,17 @@ class NotificationLayoutComponent extends Component<Props, State> {
                 <Col md={ 1 }>
                   {
                     notify.icon === 'info' && 
-                      <FontAwesomeIcon className="icon" icon="info-circle"/>
+                      <FontAwesomeIcon className="icon notify-info-icon" icon="info-circle"/>
                   }
                   
                   {
                     notify.icon === 'error' && 
-                      <FontAwesomeIcon className="icon" icon="bomb" />
+                      <FontAwesomeIcon className="icon notify-error-icon" icon="bomb" />
                   }
 
                   {
                     notify.icon === 'warning' && 
-                      <FontAwesomeIcon className="icon" icon="exclamation-triangle" />
+                      <FontAwesomeIcon className="icon notify-warning-icon" icon="exclamation-triangle" />
                   }
                 </Col>
                 

@@ -95,7 +95,6 @@ class HeaderView extends Component<Props, State> {
             onErase={ (index: number) => this.deleteNotify(index) }
           />
         </Modal>
-        
       </header>
     );
   }

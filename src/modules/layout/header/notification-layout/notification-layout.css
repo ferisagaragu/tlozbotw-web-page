@@ -1,19 +1,36 @@
+.notify-info-icon {
+  color: #0053ff;
+}
+
+.notify-warning-icon {
+  color: #ffe021;
+}
+
+.notify-error-icon {
+  color: #c00000;
+}
+
 .notify-info {
   border-radius: 50px;
-  background: #0053ff;
+  border-color: #0053ff;
+  border-width: 1px;
+  border-style: solid;
   padding: 20px;
 }
 
 .notify-warning {
   border-radius: 50px;
-  background: #ffe021;
-  color: #282912;
+  border-color: #ffe021;
+  border-width: 1px;
+  border-style: solid;
   padding: 20px;
 }
 
 .notify-error {
   border-radius: 50px;
-  background: #c00000;
+  border-color: #c00000;
+  border-width: 1px;
+  border-style: solid;
   padding: 20px;
 }
 

@@ -18,13 +18,13 @@ class ModalNotificationComponent extends Component<Props, State> {
 
     return (
       <>
-        <Modal.Header className="modal-style" closeButton>
+        <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">
             Notificaciones
           </Modal.Title>
         </Modal.Header>
 
-        <Modal.Body className="modal-style">
+        <Modal.Body>
           <div className="notify-section">
             <NotificationLayoutComponent 
               onErase={ (index: number) => onErase(index) }
