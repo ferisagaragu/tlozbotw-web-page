@@ -1,0 +1,4 @@
+.notify-section {
+  max-height: 400px;
+  overflow: auto;
+}
