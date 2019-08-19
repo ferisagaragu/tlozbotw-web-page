@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { Badge, Row, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Row, DropdownButton, Dropdown } from 'react-bootstrap';
 import key from '../../../../shared/key/react-elements.key';
+import BadgeIndicatorComponent from '../badge-indicator/badge-indicator.component';
+import { UserMenuModel } from '../../../../core/models/user-menu.model';
 import './icon-user.css';
+
 
 interface Props { 
   userImg: string;
   notificationIndicator: number;
-  menuData: any;
+  menuData: Array<UserMenuModel>;
   itemSelected: Function;
 }
 
@@ -28,32 +31,38 @@ class IconUserComponent extends Component<Props, State> {
                 alt="user data"
               />
 
-              <span className="bafge-position">
-                {
-                  notificationIndicator !== 0 &&
-                    <Badge 
-                      variant="danger"
-                    >
-                      { 
-                        notificationIndicator >= 100 ?
-                          '+99'
-                        :
-                          notificationIndicator
-                      }
-                    </Badge>
-                }
+              <span className="badge-position">
+                <BadgeIndicatorComponent 
+                  notificationIndicator={ notificationIndicator }
+                />
               </span>
             </>
           }
-          id={`dropdown-button-drop-left`}
+          id={ `dropdown-button-drop-left` }
         >
           { 
-            menuData.map((data: any) => {
+            menuData.map((data: UserMenuModel) => {
               if (data.separator) {
                 return (
                   <Dropdown.Divider key={ key() } />
                 );
               } 
+
+              if (data.value === 'notify') {
+                return (
+                  <Dropdown.Item
+                    onClick={ () => itemSelected(data.value) }
+                    key={ key() }
+                  >
+                    <span className="mr-2">
+                      { data.label }
+                    </span>
+                    <BadgeIndicatorComponent
+                      notificationIndicator={ notificationIndicator }
+                    />
+                  </Dropdown.Item>
+                );
+              }
               
               return (
                 <Dropdown.Item
@@ -62,7 +71,7 @@ class IconUserComponent extends Component<Props, State> {
                 >
                   { data.label }
                 </Dropdown.Item>
-              )
+              );
             })  
           }
         </DropdownButton>

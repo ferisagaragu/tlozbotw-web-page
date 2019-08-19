@@ -1,0 +1,27 @@
+.notify-info {
+  border-radius: 50px;
+  background: #0053ff;
+  padding: 20px;
+}
+
+.notify-warning {
+  border-radius: 50px;
+  background: #ffe021;
+  color: #282912;
+  padding: 20px;
+}
+
+.notify-error {
+  border-radius: 50px;
+  background: #c00000;
+  padding: 20px;
+}
+
+.notify-text {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 40px;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './dropdown-user-menu.css';
 import { Dropdown } from 'react-bootstrap';
 import key from '../../../../shared/key/react-elements.key';
+import './dropdown-user-menu.css';
 
 interface Props { 
   menuData: any;
@@ -30,23 +30,6 @@ class DropdownUserMenuComponent extends Component<Props, State> {
         </Dropdown.Item>
       )
     });
-
-    return (
-      <>
-
-        
-
-        <Dropdown.Item>
-          Another action
-        </Dropdown.Item>
-
-        <Dropdown.Item>
-          Something else here
-        </Dropdown.Item>
-
-        
-      </>
-    );
   }
 }
 

@@ -1,0 +1,9 @@
+.modal-style {
+  background: #263238;
+  color: antiquewhite;
+}
+
+.notify-section {
+  max-height: 400px;
+  overflow: auto;
+}
