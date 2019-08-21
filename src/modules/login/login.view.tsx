@@ -4,10 +4,9 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import FormRegistComponent from './form-regist/form-regist.component';
 import FormLoginComponent from './form-login/form-login.component';
 import StatusIndicatorComponent from './status-indicator/status-indicator.component';
-import { UserDataModel } from '../../core/models/user-data.model';
 
 interface Props {
-  userData: UserDataModel;
+  userData: any;
 }
 
 interface State { 
@@ -30,7 +29,7 @@ class LoginView extends Component<Props, State> {
   }
 
   render() {
-    const { send, message }: UserDataModel = this.props.userData;
+    const { send, message }: any = this.props.userData;
     const { showRegist } = this.state;
 
     return (
