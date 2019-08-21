@@ -8,9 +8,5 @@ export const reducers = combineReducers({
 });
 
 export const initState = {
-  userData: {
-    send: false,
-    message: '',
-    data: null
-  }
+  userData: null
 };
