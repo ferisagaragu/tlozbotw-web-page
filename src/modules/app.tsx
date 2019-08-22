@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from '../imports/react-redux.import';
-import LayoutView from './layout/layout.view';
+import LoginView from './login/login.view';
 
 interface Props { }
 
@@ -10,8 +10,8 @@ class App extends Component<Props, State> {
   render() {
     return (
       <>
-        { /* <LoginView /> */ }
-        <LayoutView />
+        <LoginView />
+        { /*<LayoutView /> */ }
       </>
     );
   }

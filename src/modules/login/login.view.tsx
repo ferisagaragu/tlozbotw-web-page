@@ -3,10 +3,10 @@ import { connect } from '../../imports/react-redux.import';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import FormRegistComponent from './form-regist/form-regist.component';
 import FormLoginComponent from './form-login/form-login.component';
-import StatusIndicatorComponent from './status-indicator/status-indicator.component';
+import { login } from '../../core/actions/user-data.actions';
 
 interface Props {
-  userData: any;
+  login: Function;
 }
 
 interface State { 
@@ -29,7 +29,7 @@ class LoginView extends Component<Props, State> {
   }
 
   render() {
-    const { send, message }: any = this.props.userData;
+    const { login } = this.props;
     const { showRegist } = this.state;
 
     return (
@@ -41,22 +41,17 @@ class LoginView extends Component<Props, State> {
                 {
                   showRegist ? 
                     <FormRegistComponent 
-                      submitActions={ () => {} }
+                      submitActions={ (data: any) => { } }
                       cancel={ () => this.showRegistModel() }
                       showButtons={ true }
                     />
                   :
                     <FormLoginComponent 
-                      submitActions={ () => {} }
+                      submitActions={ (formData: any) => login(formData.email, formData.password) }
                       cancel={ () => this.showRegistModel() }
                       showButtons={ true }
                     />
                 }
-            
-                <StatusIndicatorComponent
-                  message={ message }
-                  send={ send } 
-                />
               </Card.Body>
             </Card>  
           </Col>
@@ -66,12 +61,8 @@ class LoginView extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: any) => ({ 
-  userData: state.userData
-});
-
 const mapDispatchToProps = (dispatch: Function) => ({
-  //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))
+  login: (email: string, password: string) => dispatch(login(email, password))
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(LoginView);
+export default connect(null, mapDispatchToProps)(LoginView);

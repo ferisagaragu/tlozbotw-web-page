@@ -22,13 +22,19 @@ class PetitionService {
       throw response.json();
     }).then((data: any) => {
       onSuccess(data);
-    }).catch((errorCallback: any) => 
-      errorCallback.then((error: any) => {
+    }).catch((errorCallback: any) => {
+      if ((errorCallback + '') !== 'TypeError: Failed to fetch') {
+        errorCallback.then((error: any) => {
+          if (onError) {
+            onError(error);
+          }
+        });
+      } else {
         if (onError) {
-          onError(error);
+          onError(errorCallback);
         }
-      })
-    );
+      }
+    });
   }
 
   public post(url: string, params: any, onSuccess: Function, onError?: Function): void {
@@ -43,13 +49,19 @@ class PetitionService {
       throw response.json();
     }).then((data: any) => {
       onSuccess(data);
-    }).catch((errorCallback: any) => 
-      errorCallback.then((error: any) => {
+    }).catch((errorCallback: any) => {
+      if ((errorCallback + '') !== 'TypeError: Failed to fetch') {
+        errorCallback.then((error: any) => {
+          if (onError) {
+            onError(error);
+          }
+        });
+      } else {
         if (onError) {
-          onError(error);
+          onError(errorCallback);
         }
-      })
-    );
+      }
+    });
   }
 
 }

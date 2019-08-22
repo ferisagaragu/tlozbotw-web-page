@@ -24,7 +24,7 @@ class FormLoginComponent extends Component<Props, State> {
       <form onSubmit={ handleSubmit(submitActions) }>
         <Field 
           className="form-control"
-          name="userName"
+          name="email"
           type="email"
           component={ renderTextField }
           label="Nombre de usuario"
@@ -65,12 +65,12 @@ class FormLoginComponent extends Component<Props, State> {
 
 const validate = (values: any) => {
   const errors = {
-    userName: '',
+    email: '',
     password: ''
   }
   
-  if (!values.userName) {
-    errors.userName = 'El nombre de usuario es requerido';
+  if (!values.email) {
+    errors.email = 'El nombre de usuario es requerido';
   }
 
   if (!values.password) {

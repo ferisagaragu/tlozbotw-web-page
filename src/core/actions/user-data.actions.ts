@@ -2,7 +2,7 @@ import { Action } from '../interfaces/action.interface';
 import { UserDataReducerEnum } from '../enums/user-data-reducer.enum';
 import UserService from '../http/user.service';
 import { UserDataModel } from '../models/user-data.model';
-import { alert } from '../../shared/swal/swal.shared';
+import { alert, toast } from '../../shared/swal/swal.shared';
 
 const userService = new UserService();
 
@@ -15,6 +15,7 @@ export function login(email:string, password: string): Function {
     userService.login(email, password, 
       (userData: UserDataModel) => {
         dispatch(setUserData(userData));
+        toast('success', `Bienvenid@ ${userData.name}`);
       }, (error: any) => {
         alert('error', 'Upps...', error.message);
       }
