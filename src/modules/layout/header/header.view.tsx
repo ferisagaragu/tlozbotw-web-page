@@ -5,6 +5,8 @@ import { Col, Modal } from 'react-bootstrap';
 import ModalNotificationComponent from './modal-notification/modal-notification.component';
 import { NotificationModel } from '../../../core/models/notification.model';
 import userMenu from '../../../declarations/user-menu.declarations';
+import { setUserData } from '../../../core/actions/user-data.actions';
+import { UserDataModel } from '../../../core/models/user-data.model';
 
 const notifyData: Array<NotificationModel> = [
   {
@@ -28,7 +30,10 @@ const notifyData: Array<NotificationModel> = [
   }
 ]
 
-interface Props { }
+interface Props {
+  setUserData: Function;
+  userData: UserDataModel;
+}
 
 interface State {
   notifyData: Array<NotificationModel>;
@@ -44,6 +49,9 @@ class HeaderView extends Component<Props, State> {
       notifyData,
       showNotify: false
     };
+
+    const { userData } = this.props;
+    userMenu[0].label = userData.name;
   }
 
   private deleteNotify(index: number): void {
@@ -57,14 +65,21 @@ class HeaderView extends Component<Props, State> {
   }
 
   private onMenuSelected(selected: string): void {
+    const { setUserData } = this.props;
+    
     switch(selected) {
       case 'notify': 
         this.setState({ showNotify: !this.state.showNotify });
+      break;
+
+      case 'closeSesion':
+        setUserData(null);
       break;
     }
   }
 
   render() {
+    const { userData } = this.props;
     const { showNotify, notifyData } = this.state;
 
     return (
@@ -77,7 +92,7 @@ class HeaderView extends Component<Props, State> {
 
         <Col md={ 6 }>
           <IconUserComponent 
-            userImg="https://scontent.fgdl4-1.fna.fbcdn.net/v/t1.0-9/65545724_10219719336990748_9045864160952320000_n.jpg?_nc_cat=110&_nc_oc=AQlJEA2-EZmC90VUy8bduunRM5vicpta4ip1qylyPnGqeiFY7H3k_Azra9WszBMyPxo&_nc_ht=scontent.fgdl4-1.fna&oh=54c0fe62ced7746af9c3b068b165b77e&oe=5DE0C961"
+            userImg={ userData.photo }
             notificationIndicator={ notifyData.length }
             menuData={ userMenu }
             itemSelected={ (selected: any) => this.onMenuSelected(selected) }
@@ -101,11 +116,11 @@ class HeaderView extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: any) => ({ 
-  //examepleGlobalState: state.examepleGlobalState
+  userData: state.userData
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))
+  setUserData: (userData: UserDataModel) => dispatch(setUserData(userData))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderView);

@@ -6,7 +6,8 @@ class PetitionService {
   constructor(baseUrl?: string) {
     this.baseUrl = baseUrl ? baseUrl : 'http://localhost:3400';
     this.headers = {
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJlbWFpbCI6ImZlcmlzYWdhcmFndUBnbWFpbC5jb20iLCJ1aWQiOiJiN0daWHFrU1FLYm1lbkx1M2hyQ1J5SERldWUyIn0sImlhdCI6MTU2NjMzMzEwMCwiZXhwIjoxNTY2MzUxMTAwfQ.K8ImHnJP8k2TFBbdLPkEPuyDBo3tMjQVuWpA3pJwSJk',
+      // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJlbWFpbCI6ImZlcmlzYWdhcmFndUBnbWFpbC5jb20iLCJ1aWQiOiJiN0daWHFrU1FLYm1lbkx1M2hyQ1J5SERldWUyIn0sImlhdCI6MTU2NjMzMzEwMCwiZXhwIjoxNTY2MzUxMTAwfQ.K8ImHnJP8k2TFBbdLPkEPuyDBo3tMjQVuWpA3pJwSJk',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json; charset=UTF-8'
     }
   }

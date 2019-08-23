@@ -3,10 +3,15 @@ import { connect } from '../../imports/react-redux.import';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import FormRegistComponent from './form-regist/form-regist.component';
 import FormLoginComponent from './form-login/form-login.component';
-import { login } from '../../core/actions/user-data.actions';
+import { login, registerUser } from '../../core/actions/user-data.actions';
+import { UserDataModel } from '../../core/models/user-data.model';
+import StatusLoginComponent from './status-login/status-login.component';
 
 interface Props {
   login: Function;
+  registerUser: Function;
+  userData: UserDataModel;
+  statusLogin: boolean;
 }
 
 interface State { 
@@ -29,7 +34,7 @@ class LoginView extends Component<Props, State> {
   }
 
   render() {
-    const { login } = this.props;
+    const { login, statusLogin, registerUser } = this.props;
     const { showRegist } = this.state;
 
     return (
@@ -41,16 +46,20 @@ class LoginView extends Component<Props, State> {
                 {
                   showRegist ? 
                     <FormRegistComponent 
-                      submitActions={ (data: any) => { } }
+                      submitActions={ (formData: any) => registerUser(formData) }
                       cancel={ () => this.showRegistModel() }
-                      showButtons={ true }
+                      showButtons={ !statusLogin }
                     />
                   :
                     <FormLoginComponent 
                       submitActions={ (formData: any) => login(formData.email, formData.password) }
                       cancel={ () => this.showRegistModel() }
-                      showButtons={ true }
+                      showButtons={ !statusLogin }
                     />
+                }
+                {
+                  statusLogin && 
+                    <StatusLoginComponent />
                 }
               </Card.Body>
             </Card>  
@@ -61,8 +70,13 @@ class LoginView extends Component<Props, State> {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => ({
-  login: (email: string, password: string) => dispatch(login(email, password))
+const mapStateToProps = (state: any) => ({
+  statusLogin: state.statusLogin
 });
 
-export default connect(null, mapDispatchToProps)(LoginView);
+const mapDispatchToProps = (dispatch: Function) => ({
+  login: (email: string, password: string) => dispatch(login(email, password)),
+  registerUser: (userRegist: any) => dispatch(registerUser(userRegist))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginView);

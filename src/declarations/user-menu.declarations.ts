@@ -14,7 +14,7 @@ const userMenu: Array<UserMenuModel> = [
     separator: true
   },{
     label: 'Cerrar sesión',
-    value: 'closedSesion'
+    value: 'closeSesion'
   }
 ];
 
