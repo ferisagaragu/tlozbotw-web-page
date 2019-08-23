@@ -10,7 +10,7 @@ interface State { }
 class StatusLoginComponent extends Component<Props, State> {
   render() {
     return (
-      <Row className="justify-content-md-center mb-3">
+      <Row className="justify-content-md-center mb-3 mt-4">
         <Col md={ 1 }>
           <PropagateLoader 
             color="#36D7B7"

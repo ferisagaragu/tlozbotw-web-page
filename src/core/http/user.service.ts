@@ -1,5 +1,6 @@
 import PetitionService from "./petition";
 import { UserDataModel } from "../models/user-data.model";
+import Cookies from 'js-cookie';
 
 class UserService {
 
@@ -21,6 +22,7 @@ class UserService {
       (data: any) => { 
         localStorage.setItem('token', data.token);
         onSuccess(new UserDataModel(data.userData));
+        Cookies.set('userData',{ email, password });
       }, (error: any) => {
         onError(error);
       }
@@ -46,6 +48,7 @@ class UserService {
       (resp: any) => {
         localStorage.setItem('token', resp.data.token);
         onSuccess(new UserDataModel(resp.data.userData), resp.message);
+        Cookies.set('userData',{ email: petitionData.email, password: petitionData.password });
       }, (error: any) => {
         onError(error);
       }

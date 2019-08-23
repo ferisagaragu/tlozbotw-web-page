@@ -51,18 +51,17 @@ class FormLoginComponent extends Component<Props, State> {
 
         {
           showButtons &&
-            <div className="text-center">
+            <div className="text-center mt-4">
               <Button 
-                className="mr-3"
+                className="mr-3 btn-hover color-9"
                 onClick={ cancel }
-                variant="outline-info"
               >
                 Registrar
               </Button>
 
               <Button 
-                type="submit"
-                variant="outline-success" 
+                className="btn-hover color-5"
+                type="submit" 
                 disabled={ submitting }
               >
                 Entrar

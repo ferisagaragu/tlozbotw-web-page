@@ -84,18 +84,17 @@ class FormRegistComponent extends Component<Props, State> {
 
         {
           showButtons &&
-            <div className="text-center">
+            <div className="text-center mt-4">
               <Button 
-                className="mr-3"
+                className="mr-3 btn-hover color-11"
                 onClick={ cancel }
-                variant="outline-danger"
               >
                 Cancelar
               </Button>
 
               <Button 
+                className="btn-hover color-9"
                 type="submit"
-                variant="outline-info" 
                 disabled={ submitting }
               >
                 Registrar
