@@ -8,8 +8,8 @@ import * as serviceWorker from './serviceWorker';
 import { store } from './config/app.config';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './styles/stylesheet/index.css';
+import './styles/stylesheet/button.css';
 
 ReactDOM.render(
   <Provider store={ store }>

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
-import NavbarComponent from './navbar/navbar.component';
 import HeaderComponent from './header/header.view';
 import FooterComponent from './footer/footer.component';
+import BurgerMenuComponent from './navbar/burger-menu/burger-menu.component';
+import '../../styles/stylesheet/layout.css';
 
 interface Props { }
 
@@ -13,7 +14,7 @@ class LayoutView extends Component<Props, State> {
     return (
       <>
         <HeaderComponent />
-        <NavbarComponent />
+        <BurgerMenuComponent />
         <FooterComponent />
       </>
     );

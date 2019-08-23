@@ -6,7 +6,7 @@ const Routing = () => {
   return (
     <Switch>
       <Route path="/home/" exact component={ HomeView }/>
-      <Route component={ HomeView } />
+      { /*<Route component={ HomeView } />*/ }
     </Switch>
   );
 }
