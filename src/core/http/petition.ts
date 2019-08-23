@@ -6,7 +6,8 @@ class PetitionService {
   constructor(baseUrl?: string) {
     this.baseUrl = baseUrl ? baseUrl : 'http://localhost:3400';
     this.headers = {
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJlbWFpbCI6ImZlcmlzYWdhcmFndUBnbWFpbC5jb20iLCJ1aWQiOiJiN0daWHFrU1FLYm1lbkx1M2hyQ1J5SERldWUyIn0sImlhdCI6MTU2NjMzMzEwMCwiZXhwIjoxNTY2MzUxMTAwfQ.K8ImHnJP8k2TFBbdLPkEPuyDBo3tMjQVuWpA3pJwSJk',
+      // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJlbWFpbCI6ImZlcmlzYWdhcmFndUBnbWFpbC5jb20iLCJ1aWQiOiJiN0daWHFrU1FLYm1lbkx1M2hyQ1J5SERldWUyIn0sImlhdCI6MTU2NjMzMzEwMCwiZXhwIjoxNTY2MzUxMTAwfQ.K8ImHnJP8k2TFBbdLPkEPuyDBo3tMjQVuWpA3pJwSJk',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json; charset=UTF-8'
     }
   }
@@ -22,13 +23,19 @@ class PetitionService {
       throw response.json();
     }).then((data: any) => {
       onSuccess(data);
-    }).catch((errorCallback: any) => 
-      errorCallback.then((error: any) => {
+    }).catch((errorCallback: any) => {
+      if ((errorCallback + '') !== 'TypeError: Failed to fetch') {
+        errorCallback.then((error: any) => {
+          if (onError) {
+            onError(error);
+          }
+        });
+      } else {
         if (onError) {
-          onError(error);
+          onError(errorCallback);
         }
-      })
-    );
+      }
+    });
   }
 
   public post(url: string, params: any, onSuccess: Function, onError?: Function): void {
@@ -43,13 +50,19 @@ class PetitionService {
       throw response.json();
     }).then((data: any) => {
       onSuccess(data);
-    }).catch((errorCallback: any) => 
-      errorCallback.then((error: any) => {
+    }).catch((errorCallback: any) => {
+      if ((errorCallback + '') !== 'TypeError: Failed to fetch') {
+        errorCallback.then((error: any) => {
+          if (onError) {
+            onError(error);
+          }
+        });
+      } else {
         if (onError) {
-          onError(error);
+          onError(errorCallback);
         }
-      })
-    );
+      }
+    });
   }
 
 }

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
 import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormLoginReducerEnum } from '../../../core/enums/form-login-reducer.enum';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
+import loginImage from '../../../styles/animation/login_logo.gif';
 import './form-login.css';
 
 interface Props { 
@@ -22,9 +23,19 @@ class FormLoginComponent extends Component<Props, State> {
     
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
+        <Row>
+          <Col md={ 12 } className="text-center mb-3">
+            <img
+              className="login-logo"
+              alt="user"
+              src={ loginImage }
+            />
+          </Col>
+        </Row>
+
         <Field 
           className="form-control"
-          name="userName"
+          name="email"
           type="email"
           component={ renderTextField }
           label="Nombre de usuario"
@@ -65,12 +76,12 @@ class FormLoginComponent extends Component<Props, State> {
 
 const validate = (values: any) => {
   const errors = {
-    userName: '',
+    email: '',
     password: ''
   }
   
-  if (!values.userName) {
-    errors.userName = 'El nombre de usuario es requerido';
+  if (!values.email) {
+    errors.email = 'El nombre de usuario es requerido';
   }
 
   if (!values.password) {

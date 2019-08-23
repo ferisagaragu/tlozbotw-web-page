@@ -19,7 +19,33 @@ class UserService {
 
     this.petition.post(`${this.baseUrl}/login`, userData,
       (data: any) => { 
+        localStorage.setItem('token', data.token);
         onSuccess(new UserDataModel(data.userData));
+      }, (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
+  public registerUser(userData: any, onSuccess: Function, onError: Function) {
+    const petitionData = {
+      email: userData.email,
+      password: userData.password,
+      name: userData.name,
+      photo: !userData.img ? 
+        'https://scontent.cdninstagram.com/vp/' +
+        '768d366914c0a79eadae628a8b67bb52/5DC16' +
+        '3AF/t51.2885-15/e35/c0.134.1080.1080/s4' + 
+        '80x480/66326556_2390444491197591_3495239' + 
+        '699137757033_n.jpg?_nc_ht=scontent-sea1-1' +
+        '.cdninstagram.com'
+      : userData.img
+    }
+
+    this.petition.post(`${this.baseUrl}/registerUser`, petitionData,
+      (resp: any) => {
+        localStorage.setItem('token', resp.data.token);
+        onSuccess(new UserDataModel(resp.data.userData), resp.message);
       }, (error: any) => {
         onError(error);
       }

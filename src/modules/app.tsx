@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from '../imports/react-redux.import';
+import { UserDataModel } from '../core/models/user-data.model';
+import LoginView from './login/login.view';
 import LayoutView from './layout/layout.view';
 
-interface Props { }
+interface Props { 
+  userData: UserDataModel
+}
 
 interface State { }
 
 class App extends Component<Props, State> {
   render() {
+    const { userData } = this.props;
+
     return (
       <>
-        { /* <LoginView /> */ }
-        <LayoutView />
+        {
+          userData ?
+            <LayoutView />
+          :
+            <LoginView />
+        }
       </>
     );
   }
 }
 
 const mapStateToProps = (state: any) => ({ 
-  //examepleGlobalState: state.examepleGlobalState
+  userData: state.userData
 });
 
-const mapDispatchToProps = (dispatch: Function) => ({
-  //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))
-});
-
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);
