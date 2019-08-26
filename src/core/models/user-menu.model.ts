@@ -1,6 +1,6 @@
 export class UserMenuModel {
 
-  label?: string;
+  label?: any;
   value?: any;
   separator?: boolean;
 

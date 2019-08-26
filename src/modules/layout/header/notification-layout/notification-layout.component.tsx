@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import key from '../../../../shared/key/react-elements.key';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from '../../../../imports/react-router-dom.import';
@@ -26,7 +26,7 @@ class NotificationLayoutComponent extends Component<Props, State> {
               No hay notificaciones para mostrar.
             </div>
           :
-            notifyData.map((notify: NotificationModel, index: number) => (
+            notifyData.map((notify: NotificationModel) => (
               <Row 
                 className={ `notify-${notify.icon} ml-3 mr-3 mt-3` }
                 key={ key() }
@@ -58,23 +58,28 @@ class NotificationLayoutComponent extends Component<Props, State> {
                   </label>
                 </Col>
                 
-                <Col md={ 1 } className="notify-text">
-                  <Link to={ notify.link }>
-                    <button
-                      className="button-notify btn-hover color-1"
-                    >
-                      <FontAwesomeIcon icon="eye"/>
-                    </button>
-                  </Link>
-                </Col>
+                {
+                  notify.link &&
+                    <Col md={ 1 } className="notify-text">
+                      <Link to={ notify.link }>
+                        <Button
+                          className="btn-hover color-1"
+                        >
+                          <FontAwesomeIcon icon="eye"/>
+                        </Button>
+                      </Link>
+                    </Col>
+                }
 
-                <Col md={ 1 }>
-                  <button 
-                    className="button-notify-cancel btn-hover color-11"
-                    onClick={ () => onErase(index) }
-                  >
-                    <FontAwesomeIcon icon="times"/>
-                  </button>
+                <Col md={ 1 } className={ `notify-text ${!notify.link ? 'ml-5' : ''}` } >
+                  <span>
+                    <Button 
+                      className="btn-hover color-11"
+                      onClick={ () => onErase(notify.id) }
+                    >
+                      <FontAwesomeIcon icon="times"/>
+                    </Button>
+                  </span>
                 </Col>
               </Row>
             )) 

@@ -5,6 +5,7 @@ export class NotificationModel {
   title: string;
   message: string;
   link: string;
+  see: boolean;
 
   constructor(data: any | NotificationModel) {
     this.id = '';
@@ -12,6 +13,7 @@ export class NotificationModel {
     this.title = '';
     this.message = '';
     this.link = '';
+    this.see = false;
 
     Object.assign(this, data);
   }

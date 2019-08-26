@@ -7,11 +7,11 @@
 }
 
 .bm-burger-bars {
-  background: white;
+  background: #B99F65;;
 }
 
 .bm-burger-bars-hover {
-  background: #b8b7ad;
+  background: #B99F65;
 }
 
 .bm-cross-button {
@@ -20,7 +20,7 @@
 }
 
 .bm-cross {
-  background: #bdc3c7;
+  background: #B99F65;
 }
 
 .bm-menu-wrap {
@@ -29,7 +29,7 @@
 }
 
 .bm-menu {
-  background: #373a47;
+  background: url('../../../../styles/img/black.jpg');
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
@@ -39,7 +39,7 @@
 }
 
 .bm-item-list {
-  color: #b8b7ad;
+  color: #B99F65;
   padding: 0.8em;
 }
 
