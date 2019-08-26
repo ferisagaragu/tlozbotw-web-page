@@ -22,9 +22,9 @@ class BowView extends Component<Props, State> {
     const { bowData } = this.props;
     return (
       <>
-       <ListBowComponent
-        bows={ bowData }
-       ></ListBowComponent>
+        <ListBowComponent
+          bows={ bowData }
+        />
       </>
     );
   }
