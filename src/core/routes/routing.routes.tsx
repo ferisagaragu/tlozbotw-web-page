@@ -8,7 +8,7 @@ const Routing = () => {
     <Switch>
       <Route path="/home/" exact component={ HomeView } />
       <Route path="/bow/" exact component={ BowView } />
-      { /*<Route component={ HomeView } />*/ }
+      <Route component={ HomeView } />
     </Switch>
   );
 }
