@@ -10,12 +10,10 @@
 }
 
 .btn-hover {
-  width: 100%;
   font-size: 16px;
   font-weight: 600;
   color: #fff;
   cursor: pointer;
-  margin: 20px;
   height: 100%;
   text-align:center;
   border: none;

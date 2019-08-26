@@ -2,7 +2,7 @@ import { UserMenuModel } from "../core/models/user-menu.model";
 
 const userMenu: Array<UserMenuModel> = [
   {
-    label: 'Fernando Isaías García Aguirre',
+    label: 'username',
     value: 'userName'
   },{
     label: 'Notificaciones',
@@ -14,7 +14,7 @@ const userMenu: Array<UserMenuModel> = [
     separator: true
   },{
     label: 'Cerrar sesión',
-    value: 'closedSesion'
+    value: 'closeSesion'
   }
 ];
 

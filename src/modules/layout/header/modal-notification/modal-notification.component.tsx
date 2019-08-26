@@ -27,7 +27,7 @@ class ModalNotificationComponent extends Component<Props, State> {
         <Modal.Body>
           <div className="notify-section">
             <NotificationLayoutComponent 
-              onErase={ (index: number) => onErase(index) }
+              onErase={ (id: string) => onErase(id) }
               notifyData={ notifyData }
             />
           </div>

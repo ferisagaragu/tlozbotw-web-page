@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StatusIndicatorComponent from './status-indicator.component';
+import StatusLoginComponent from './status-login.component';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<StatusIndicatorComponent />, div);
+  ReactDOM.render(<StatusLoginComponent />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

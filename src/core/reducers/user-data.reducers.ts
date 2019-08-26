@@ -7,3 +7,17 @@ export const userData = (state = {}, action: Action) => {
     default: return state;
   }
 }
+
+export const statusLogin = (state = {}, action: Action) => {
+  switch(action.type) {
+    case UserDataReducerEnum.SET_STATUS_LOGIN: return action.payload;
+    default: return state;
+  }
+}
+
+export const notifications = (state = {}, action: Action) => {
+  switch(action.type) {
+    case UserDataReducerEnum.SET_NOTIFICATIONS: return action.payload;
+    default: return state;
+  }
+}
