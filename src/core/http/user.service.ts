@@ -12,7 +12,7 @@ class UserService {
     this.baseUrl = this.petition.baseUrl;
   }
 
-  public login(email: string, password: string, onSuccess: Function, onError: Function) {
+  public login(email: string, password: string, onSuccess: Function, onError: Function): void {
     const userData: any = {
       email,
       password
@@ -29,7 +29,7 @@ class UserService {
     );
   }
 
-  public registerUser(userData: any, onSuccess: Function, onError: Function) {
+  public registerUser(userData: any, onSuccess: Function, onError: Function): void {
     const petitionData = {
       email: userData.email,
       password: userData.password,
@@ -49,6 +49,26 @@ class UserService {
         localStorage.setItem('token', resp.data.token);
         onSuccess(new UserDataModel(resp.data.userData), resp.message);
         Cookies.set('userData',{ email: petitionData.email, password: petitionData.password });
+      }, (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
+  public removeNotification(id: string, idNotify: string, onSuccess: Function, onError: Function): void {
+    this.petition.delete(`${this.baseUrl}/deleteNotification?id=${id}&notifyId=${idNotify}`, 
+      (resp: any) => {
+        onSuccess(resp);
+      }, (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
+  public createNotification(notificationData: any, onSuccess: Function, onError: Function): void {
+    this.petition.post(`${this.baseUrl}/createNotification`, notificationData,
+      (resp: any) => {
+        onSuccess(resp);
       }, (error: any) => {
         onError(error);
       }

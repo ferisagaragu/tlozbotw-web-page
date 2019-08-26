@@ -36,14 +36,3 @@
 .icon {
   font-size: 40px;
 }
-
-.button-notify {
-  width: 50px !important;
-  height: 30px !important;
-}
-
-.button-notify-cancel {
-  margin-top: 27px !important; 
-  width: 50px !important;
-  height: 30px !important;
-}
