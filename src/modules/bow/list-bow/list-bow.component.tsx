@@ -17,7 +17,7 @@ class ListBowComponent extends Component<Props, State> {
     const { bows } = this.props;
     if (bows) {
       return bows.map((bow: BowModel) => (
-        <Col md={ 4 } key={ key() }>
+        <Col md={ 4 } key={ key() } className="mb-5"> 
           <CardBowComponent
             title={ bow.name }
             srcImage={ bow.img }

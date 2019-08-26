@@ -16,14 +16,14 @@ class CardBowComponent extends Component<Props, State> {
     const { title, srcImage, damageBow, descriptionBow } = this.props;
 
     return (
-      <Card>
+      <Card className="card-bow-size">
         <Card.Body>
           <Container>
             <Row>
               <Col md={ 11 } className="text-center">
-                <h3>
+                <h2>
                   { title }
-                </h3>
+                </h2>
               </Col>
 
               <Col md={ 1 } className="text-right">
@@ -42,7 +42,7 @@ class CardBowComponent extends Component<Props, State> {
 
             <Row>
               <Col>
-                { damageBow }
+                Daño: { damageBow }
               </Col>
             </Row>
             
