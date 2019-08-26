@@ -41,7 +41,7 @@ class LoginView extends Component<Props, State> {
       <Container>
         <Row className="justify-content-md-center mt-5">
           <Col md={ 4 }>
-            <Card className="card-shadow">
+            <Card>
               <Card.Body>
                 {
                   showRegist ? 

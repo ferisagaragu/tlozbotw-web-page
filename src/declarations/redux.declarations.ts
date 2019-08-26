@@ -12,7 +12,7 @@ export const reducers = combineReducers({
 });
 
 export const initState = {
-  notifications: []
+  notifications: [],
   statusLogin: false,
   userData: null,
   bowData: null

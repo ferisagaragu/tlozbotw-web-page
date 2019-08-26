@@ -19,7 +19,7 @@ class BowService {
       (error: any) => {
         onError(error);
       }
-    )
+    );
   }
 }
 
