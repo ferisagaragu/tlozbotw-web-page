@@ -1,37 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import { connect } from '../../../imports/react-redux.import';
 import IconUserComponent from './icon-user/icon-user.component';
-import { Col, Modal } from 'react-bootstrap';
+import { Col, Modal, Badge } from 'react-bootstrap';
 import ModalNotificationComponent from './modal-notification/modal-notification.component';
 import { NotificationModel } from '../../../core/models/notification.model';
 import userMenu from '../../../declarations/user-menu.declarations';
+import { setUserData, getNotifications, removeNotification } from '../../../core/actions/user-data.actions';
+import { UserDataModel } from '../../../core/models/user-data.model';
 
-const notifyData: Array<NotificationModel> = [
-  {
-    id: '',
-    icon: 'info',
-    title: 'Soy un titulo',
-    message: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    link: '/datos/nuevos?data=123423'
-  },{
-    id: '',
-    icon: 'error',
-    title: 'Soy un titulo',
-    message: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    link: ''
-  },{
-    id: '',
-    icon: 'warning',
-    title: 'Soy un titulo',
-    message: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    link: ''
-  }
-]
-
-interface Props { }
+interface Props {
+  setUserData: Function;
+  getNotifications: Function;
+  removeNotification: Function;
+  userData: UserDataModel;
+  notification: Array<NotificationModel>;
+}
 
 interface State {
-  notifyData: Array<NotificationModel>;
   showNotify: boolean;
 }
 
@@ -41,31 +26,58 @@ class HeaderView extends Component<Props, State> {
     super(props);
 
     this.state = {
-      notifyData,
       showNotify: false
     };
+
+    const { userData } = this.props;
+    userMenu[0].label = this.isAdmin(userData);
   }
 
-  private deleteNotify(index: number): void {
-    const out: Array<any> = [];
-    this.state.notifyData.forEach((notify, elementIndex) => {
-      if (elementIndex !== index) {
-        out.push(notify);
-      }
-    });
-    this.setState({ notifyData: out });
+  componentDidMount() {
+    const { userData, getNotifications } = this.props;
+    getNotifications(userData.uid);
+  }
+
+  private isAdmin(userData: UserDataModel): ReactElement {
+    return (
+      <>
+        <label>
+          { userData.name }
+          &nbsp;&nbsp;
+        </label>
+
+        { 
+          userData.role === 1 &&
+            <Badge variant="info">
+              Admin
+            </Badge>
+        }
+      </>
+    );
+  }
+
+  private deleteNotify(IdNotify: string): void {
+    const { userData, removeNotification } = this.props;
+    removeNotification(userData.uid, IdNotify);
   }
 
   private onMenuSelected(selected: string): void {
+    const { setUserData } = this.props;
+    
     switch(selected) {
       case 'notify': 
         this.setState({ showNotify: !this.state.showNotify });
+      break;
+
+      case 'closeSesion':
+        setUserData(null);
       break;
     }
   }
 
   render() {
-    const { showNotify, notifyData } = this.state;
+    const { userData, notification } = this.props;
+    const { showNotify } = this.state;
 
     return (
       <header className="row">
@@ -77,8 +89,8 @@ class HeaderView extends Component<Props, State> {
 
         <Col md={ 6 }>
           <IconUserComponent 
-            userImg="https://scontent.fgdl4-1.fna.fbcdn.net/v/t1.0-9/65545724_10219719336990748_9045864160952320000_n.jpg?_nc_cat=110&_nc_oc=AQlJEA2-EZmC90VUy8bduunRM5vicpta4ip1qylyPnGqeiFY7H3k_Azra9WszBMyPxo&_nc_ht=scontent.fgdl4-1.fna&oh=54c0fe62ced7746af9c3b068b165b77e&oe=5DE0C961"
-            notificationIndicator={ notifyData.length }
+            userImg={ userData.photo }
+            notificationIndicator={ notification.length }
             menuData={ userMenu }
             itemSelected={ (selected: any) => this.onMenuSelected(selected) }
           />
@@ -91,8 +103,8 @@ class HeaderView extends Component<Props, State> {
           aria-labelledby="example-modal-sizes-title-lg"
         >
           <ModalNotificationComponent 
-            notifyData={ notifyData }
-            onErase={ (index: number) => this.deleteNotify(index) }
+            notifyData={ notification }
+            onErase={ (id: string) => this.deleteNotify(id) }
           />
         </Modal>
       </header>
@@ -101,11 +113,14 @@ class HeaderView extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: any) => ({ 
-  //examepleGlobalState: state.examepleGlobalState
+  userData: state.userData,
+  notification: state.notifications
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))
+  setUserData: (userData: UserDataModel) => dispatch(setUserData(userData)),
+  getNotifications: (uid: string) => dispatch(getNotifications(uid)),
+  removeNotification: (id: string, idNotify: string) => dispatch(removeNotification(id,idNotify))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderView);
