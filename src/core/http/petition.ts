@@ -65,6 +65,59 @@ class PetitionService {
     });
   }
 
+  public put(url: string, params: any, onSuccess: Function, onError?: Function): void {
+    fetch(url, {
+      method: 'PUT',
+      headers: this.headers,
+      body: JSON.stringify(params)
+    }).then((response: any) => {
+      if(response.ok) {
+        return response.json();         
+      }
+      throw response.json();
+    }).then((data: any) => {
+      onSuccess(data);
+    }).catch((errorCallback: any) => {
+      if ((errorCallback + '') !== 'TypeError: Failed to fetch') {
+        errorCallback.then((error: any) => {
+          if (onError) {
+            onError(error);
+          }
+        });
+      } else {
+        if (onError) {
+          onError(errorCallback);
+        }
+      }
+    });
+  }
+
+  public delete(url: string, onSuccess: Function, onError?: Function): void {
+    fetch(url, {
+      method: 'DELETE',
+      headers: this.headers
+    }).then((response: any) => {
+      if(response.ok) {
+        return response.json();         
+      }
+      throw response.json();
+    }).then((data: any) => {
+      onSuccess(data);
+    }).catch((errorCallback: any) => {
+      if ((errorCallback + '') !== 'TypeError: Failed to fetch') {
+        errorCallback.then((error: any) => {
+          if (onError) {
+            onError(error);
+          }
+        });
+      } else {
+        if (onError) {
+          onError(errorCallback);
+        }
+      }
+    });
+  }
+
 }
 
 export default PetitionService;
