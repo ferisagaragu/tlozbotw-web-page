@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
-import SectionMakerComponent from './section-maker/section-maker.component';
+import ListMakerComponent from './list-maker/list-maker.component';
+import { makers } from '../../declarations/maker.declarations';
 
 interface Props { }
 
@@ -10,7 +11,9 @@ class FaqView extends Component<Props, State> {
   render() {
     return (
       <>
-        <SectionMakerComponent />
+        <ListMakerComponent 
+          makers={ makers }
+        />
       </>
     );
   }
