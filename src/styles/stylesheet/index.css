@@ -37,6 +37,13 @@ hr {
   box-shadow: 0 4px 8px 0 #139dff3b, 0 6px 20px 0 #139dff3b;
 }
 
+h1 {
+  font-family: 'Medula One', cursive;
+  font-size: 60px;
+  text-shadow: 2px 2px 8px rgba(19, 157, 255, 0.411);
+  color: #139eff;
+}
+
 h2 {
   font-family: 'Medula One', cursive;
 }
