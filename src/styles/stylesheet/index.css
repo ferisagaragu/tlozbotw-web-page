@@ -1,10 +1,24 @@
+@font-face {
+  font-family: tlozbotw-font;
+  src: url('../font/tlozbotw.otf');
+}
+
+@font-face {
+  font-family: 'Medula One', cursive;
+  src: url('../font/MedulaOne-Regular.ttf');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.073125em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url('../img/white.jpg');
+}
+
+input {
+  font-size: 30px;
 }
 
 code {
@@ -12,6 +26,12 @@ code {
     monospace;
 }
 
-.card-shadow {
+.card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+hr {
+  background: url('../svg/divider-blue.svg');
+  height: 10px;
+  box-shadow: 0 4px 8px 0 #139dff3b, 0 6px 20px 0 #139dff3b;
 }
