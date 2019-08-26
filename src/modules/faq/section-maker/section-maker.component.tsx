@@ -1,61 +1,77 @@
 import React, { Component } from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Col, Card } from 'react-bootstrap';
 import facebookIcon from '../../../styles/img/facebook-icon.png';
 import twitterIcon from '../../../styles/img/twitter-icon.png';
 import gitHubIcon from '../../../styles/img/github-icon.png';
-import enidImg from '../../../styles/img/makers/enid.jpg';
 import './section-maker.css';
 
-interface Props { }
+interface Props {
+  img: string;
+  name: string;
+  jobs: Array<string>;
+  about: string;
+  facebook: string;
+  twitter: string;
+  github: string;
+}
 
 interface State { }
 
 class SectionMakerComponent extends Component<Props, State> {
   render() {
+    const { 
+      img,
+      name,
+      jobs,
+      about,
+      facebook,
+      twitter,
+      github
+    } = this.props;
+    
     return (
-      <Row>
-        <Col md={ 4 } className="text-center">
-          <Card>
-            <Card.Body>
-              <img className="rounded-circle" alt="maker" width="250" src={ enidImg } />
-              <br />
+      <Col md={ 4 } className="text-center">
+        <Card className="card-size">
+          <Card.Body>
+            <img className="rounded-circle image-maker" alt="maker" src={ img } />
+            <br />
 
-              <h4 className="mt-3">
-                Enid Medina (Miau)
-              </h4>
-              <br />
+            <h4 className="mt-3">
+              { name }
+            </h4>
+            <br />
 
-              <label>
-                Desarrolladora web
-              </label>
-              <br />
+            {
+              jobs.map((job: string) => (
+                <>
+                  <label className="job">
+                    { job }
+                  </label>
+                  <br />
+                </>
+              ))
+            }
 
-              <label>
-                Arte conceptual
-              </label>
-              <br />
+            <hr />
 
-              <hr />
+            <p>
+              { about }
+            </p> 
 
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga obcaecati veniam maxime delectus dolores nobis earum! Reprehenderit repellat, asperiores, alias corrupti illum amet officiis quo architecto ut voluptatem voluptas blanditiis?
-              </p> 
+            <a href={ facebook }>
+              <img alt="facebook" src={ facebookIcon } />
+            </a>
 
-              <a>
-                <img alt="facebook" src={ facebookIcon } />
-              </a>
+            <a href={ twitter }>
+              <img alt="twitter" src={ twitterIcon } />
+            </a>
 
-              <a>
-                <img alt="twitter" src={ twitterIcon } />
-              </a>
-
-              <a>
-                <img alt="github" src={ gitHubIcon } />
-              </a>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+            <a href={ github }>
+              <img alt="github" src={ gitHubIcon } />
+            </a>
+          </Card.Body>
+        </Card>
+      </Col>
     );
   }
 }
