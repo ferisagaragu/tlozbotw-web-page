@@ -4,8 +4,8 @@
 }
 
 @font-face {
-  font-family: 'Medula One', cursive;
-  src: url('../font/MedulaOne-Regular.ttf');
+  font-family: Nunito;
+  src: url('../font/Nunito-Regular.ttf');
 }
 
 body {
