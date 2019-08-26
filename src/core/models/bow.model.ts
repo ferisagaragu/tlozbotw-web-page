@@ -1,17 +1,17 @@
 export class BowModel {
 
   id: number;
-  title: string;
-  srcImage: string;
-  damageBow: string;
-  descriptionBow: string;
+  name: string;
+  damage: string;
+  description: string;
+  img: string;
 
   constructor(data: any | BowModel) {
     this.id = 0;
-    this.title = '';
-    this.srcImage = '';
-    this.damageBow = '';
-    this.descriptionBow = '';
+    this.name = '';
+    this.damage = '';
+    this.description = '';
+    this.img = '';
 
     Object.assign(this, data);
   }
