@@ -15,16 +15,23 @@ class ListBowComponent extends Component<Props, State> {
 
   private renderBows() {
     const { bows } = this.props;
-    return bows.map((bow: BowModel) => (
-      <Col md={ 4 } key={ key() }>
-        <CardBowComponent
-          title= { bow.title }
-          srcImage={ bow.srcImage }
-          damageBow={ bow.damageBow }
-          descriptionBow={ bow.descriptionBow }
-        ></CardBowComponent>
-      </Col>
-    ));
+    if (bows) {
+      return bows.map((bow: BowModel) => (
+        <Col md={ 4 } key={ key() }>
+          <CardBowComponent
+            title={ bow.name }
+            srcImage={ bow.img }
+            damageBow={ bow.damage }
+            descriptionBow={ bow.description }
+          ></CardBowComponent>
+        </Col>
+      ));
+    } else {
+      return (
+        <label>Cargando datos...</label>
+      );
+    }
+    
   }
 
   render() {

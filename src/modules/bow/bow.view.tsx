@@ -1,53 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
 import ListBowComponent from './list-bow/list-bow.component';
+import { getBows } from '../../core/actions/bow-data.actions';
+import { BowModel } from '../../core/models/bow.model';
 
-interface Props { }
+interface Props { 
+  getBows: Function;
+  bowData: Array<BowModel>;
+}
 
 interface State { }
 
 class BowView extends Component<Props, State> {
+  
+  componentDidMount() {
+    const { getBows } = this.props;
+    getBows('zmqixDaO5xQS7lfq4tZUfRFUHDY2');
+  }
+
   render() {
+    const { bowData } = this.props;
     return (
       <>
        <ListBowComponent
-        bows={[
-          {
-            id: 0,
-            title: 'test',
-            srcImage: 'image',
-            damageBow: '16', 
-            descriptionBow: 'test'
-          },
-          {
-            id: 1,
-            title: 'test',
-            srcImage: 'image',
-            damageBow: '15', 
-            descriptionBow: 'test'
-          },
-          {
-            id: 2,
-            title: 'test',
-            srcImage: 'image',
-            damageBow: '15', 
-            descriptionBow: 'test'
-          },
-          {
-            id: 2,
-            title: 'test',
-            srcImage: 'image',
-            damageBow: '15', 
-            descriptionBow: 'test'
-          },
-          {
-            id: 2,
-            title: 'test',
-            srcImage: 'image',
-            damageBow: '15', 
-            descriptionBow: 'test'
-          }
-        ]}
+        bows={ bowData }
        ></ListBowComponent>
       </>
     );
@@ -55,11 +31,11 @@ class BowView extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: any) => ({ 
-  //examepleGlobalState: state.examepleGlobalState
+  bowData: state.bowData
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))
+  getBows: (id: string) => dispatch(getBows(id))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(BowView);
