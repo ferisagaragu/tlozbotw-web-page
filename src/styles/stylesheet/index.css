@@ -8,6 +8,11 @@
   src: url('../font/Nunito-Regular.ttf');
 }
 
+@font-face {
+  font-family: Medula One;
+  src: url('../font/MedulaOne-Regular.ttf');
+}
+
 body {
   margin: 0;
   font-family: 'Nunito', sans-serif;
@@ -15,10 +20,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url('../img/white.jpg');
-}
-
-input {
-  font-size: 30px;
 }
 
 code {
@@ -34,4 +35,8 @@ hr {
   background: url('../svg/divider-blue.svg');
   height: 10px;
   box-shadow: 0 4px 8px 0 #139dff3b, 0 6px 20px 0 #139dff3b;
+}
+
+h2 {
+  font-family: 'Medula One', cursive;
 }
