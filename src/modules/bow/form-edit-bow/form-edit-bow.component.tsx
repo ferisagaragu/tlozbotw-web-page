@@ -80,19 +80,19 @@ const validate = (values: any) => {
   }
   
   if (!values.img) {
-    errors.img = 'example is requiered';
+    errors.img = 'La imagen del arco es requerida';
   }
 
   if (!values.name) {
-    errors.name = 'example is requiered';
+    errors.name = 'El nombre del arco es requerido';
   }
 
   if (!values.damage) {
-    errors.damage = 'example is requiered';
+    errors.damage = 'El daño del arco es requerido';
   }
 
   if (!values.description) {
-    errors.description = 'example is requiered';
+    errors.description = 'La descripción es requerida';
   }
 
   return errors

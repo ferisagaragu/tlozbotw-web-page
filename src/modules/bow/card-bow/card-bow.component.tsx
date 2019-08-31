@@ -38,7 +38,10 @@ class CardBowComponent extends Component<Props, State> {
               </Col>
 
               <Col md={ 1 } className="text-right">
-                Botoncito
+                {
+                  mode !== 1 && 
+                    'Botoncito'
+                }
               </Col>
             </Row>
 
