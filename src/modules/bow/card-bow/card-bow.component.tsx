@@ -47,7 +47,8 @@ class CardBowComponent extends Component<Props, State> {
 
             <Row>
               <Col md={ 11 } className="text-center">
-                <img 
+                <img
+                  className="bow-img" 
                   alt="bow"
                   src={ srcImage }
                 />

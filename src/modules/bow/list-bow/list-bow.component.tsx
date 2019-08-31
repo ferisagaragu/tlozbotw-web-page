@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import CardBowComponent from '../card-bow/card-bow.component';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { BowModel } from '../../../core/models/bow.model';
 import key from '../../../shared/key/react-elements.key';
 import { RingLoader } from 'react-spinners';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './list-bow.css';
 
 interface Props { 
   bows: Array<BowModel>;
   onDelete: Function;
   onEdit: Function;
+  onCreate: Function;
   className: string;
   userRole: number;
 }
@@ -32,21 +34,36 @@ class ListBowComponent extends Component<Props, State> {
             mode={ userRole }
             onDelete={ () => onDelete(bow.id) }
             onEdit={ () => onEdit(bow) }
-          >
-          </CardBowComponent>
+          />
         </Col>
       ));
     }
   }
 
   render() {
-    const { className, bows } = this.props;
+    const { className, bows, userRole, onCreate } = this.props;
 
     return (
       <>
         {
           bows ? 
-            <Row className={ className }> 
+            <Row className={ className }>
+              { 
+                userRole === 1 &&
+                <Col 
+                  md={ 4 } 
+                  className="mb-5 button-center"
+                > 
+                  <div className="text-center div-center">
+                    <Button 
+                      className="circular btn-hover color-12"
+                      onClick={ () => onCreate() }
+                    >
+                      <FontAwesomeIcon icon="plus" />
+                    </Button>
+                  </div>
+                </Col>
+              }
               { this.renderBows() }
             </Row>
           :

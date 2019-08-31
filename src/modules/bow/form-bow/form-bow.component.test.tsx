@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FormEditBowComponent from './form-edit-bow.component';
+import FormEditBowComponent from './form-bow.component';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

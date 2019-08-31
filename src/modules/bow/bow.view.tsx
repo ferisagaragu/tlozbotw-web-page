@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
 import ListBowComponent from './list-bow/list-bow.component';
-import { getBows, updateBow } from '../../core/actions/bow-data.actions';
+import { getBows, updateBow, createBow, deleteBow } from '../../core/actions/bow-data.actions';
 import { BowModel } from '../../core/models/bow.model';
 import { UserDataModel } from '../../core/models/user-data.model';
 import { alertQuestion } from '../../shared/swal/swal.shared';
-import FormEditBowComponent from './form-edit-bow/form-edit-bow.component';
+import FormBowComponent from './form-bow/form-bow.component';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { TitleComponent } from '../../shared/title/title.component';
 
 interface Props { 
   getBows: Function;
+  createBow: Function;
   updateBow: Function;
+  deleteBow: Function;
   bowData: Array<BowModel>;
   userData: UserDataModel;
 }
 
 interface State {
   modalShow: boolean;
-  bowEdit: BowModel;
+  bowCreateEdit: BowModel;
 }
 
 class BowView extends Component<Props, State> {
@@ -28,7 +30,7 @@ class BowView extends Component<Props, State> {
 
     this.state = {
       modalShow: false,
-      bowEdit: new BowModel({})
+      bowCreateEdit: new BowModel({})
     };
   }
 
@@ -37,29 +39,54 @@ class BowView extends Component<Props, State> {
     getBows(userData.uid);
   }
 
-  private showModal(bowEdit?: BowModel): void {
+  private showModal(bowCreateEdit?: BowModel): void {
     const { modalShow } = this.state;
     this.setState({ 
       modalShow: !modalShow, 
-      bowEdit: bowEdit ? bowEdit : new BowModel({})
+      bowCreateEdit: bowCreateEdit ? bowCreateEdit : new BowModel({})
     });
   }
 
+  private onSubmit(formData: BowModel) {
+    if (formData.id === 0) {
+      this.createBow(formData);
+    } else {
+      this.onEdit(formData);
+    }
+  }
+
   private onEdit(formData: BowModel): void {
-    const { updateBow, userData } = this.props;
+    const { updateBow } = this.props;
     this.showModal();
-    updateBow(userData.uid, formData);
+    updateBow(formData);
+  }
+
+  private createBow(formData: BowModel): void {
+    const { createBow } = this.props;
+    this.showModal();
+    createBow(formData);
   }
 
   private onDelete(id: number): void {
     alertQuestion('question', '¿Deseas eliminar el registro?', '', () => {
-              
+      const { deleteBow } = this.props;
+      deleteBow(id);
     });
+  }
+
+  private createTitle() {
+    const { bowCreateEdit } = this.state;
+    return (
+      bowCreateEdit.name ? 
+        bowCreateEdit.name 
+      : 
+        'Crear nuevo arco'
+    );
   }
 
   render() {
     const { bowData, userData } = this.props;
-    const { modalShow, bowEdit } = this.state;
+    const { modalShow, bowCreateEdit } = this.state;
 
     return (
       <>
@@ -69,12 +96,12 @@ class BowView extends Component<Props, State> {
 
         <ModalComponent
           size="lg"
-          title={ bowEdit.name }
+          title={ this.createTitle() }
           modalShow={ modalShow }
           body={
-            <FormEditBowComponent
-              initialValues={ bowEdit }
-              submitActions={ (formData: BowModel) => this.onEdit(formData) }
+            <FormBowComponent
+              initialValues={ bowCreateEdit }
+              submitActions={ (formData: BowModel) => this.onSubmit(formData) }
               cancel={ () => this.showModal() }
             />
           }
@@ -86,7 +113,8 @@ class BowView extends Component<Props, State> {
           bows={ bowData }
           userRole={ userData.role }
           onDelete={ (id: number) => this.onDelete(id) }
-          onEdit={ (bowEdit: BowModel) => this.showModal(bowEdit) }
+          onEdit={ (bowCreateEdit: BowModel) => this.showModal(bowCreateEdit) }
+          onCreate={ () => this.showModal() }
         />
       </>
     );
@@ -100,7 +128,9 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: Function) => ({
   getBows: (id: string) => dispatch(getBows(id)),
-  updateBow: (idUser: string, bowData: BowModel) => dispatch(updateBow(idUser, bowData))
+  createBow: (bowData: BowModel) =>  dispatch(createBow(bowData)),
+  deleteBow: (bowId: number) => dispatch(deleteBow(bowId)),
+  updateBow: (bowData: BowModel) => dispatch(updateBow(bowData))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(BowView);

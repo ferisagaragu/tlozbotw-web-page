@@ -4,7 +4,7 @@ import { renderTextField, renderTextArea } from '../../../shared/redux-form/redu
 import { FormEditBowReducerEnum } from '../../../core/enums/form-edit-bow-reducer.enum';
 import { BowModel } from '../../../core/models/bow.model';
 import { Button } from 'react-bootstrap';
-import './form-edit-bow.css';
+import './form-bow.css';
 
 interface Props { 
   initialValues: BowModel;
@@ -16,10 +16,11 @@ interface Props {
 
 interface State { }
 
-class FormEditBowComponent extends Component<Props, State> {
+class FormBowComponent extends Component<Props, State> {
+  
   render() {
-    const { handleSubmit, cancel, submitting, submitActions } = this.props;
-    
+    const { handleSubmit, cancel, submitting, submitActions, initialValues } = this.props;
+
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
         <Field 
@@ -51,14 +52,25 @@ class FormEditBowComponent extends Component<Props, State> {
         />
         
         <div className="text-right mt-4">
-          <Button
-            className="mr-3 btn-hover color-9" 
-            type="submit" 
-            disabled={ submitting }
-          >
-            Editar
-          </Button>
-
+          {
+            initialValues.id === 0 ?
+              <Button
+                className="mr-3 btn-hover color-5" 
+                type="submit" 
+                disabled={ submitting }
+              >
+                Crear
+              </Button>
+            :
+              <Button
+                className="mr-3 btn-hover color-9" 
+                type="submit" 
+                disabled={ submitting }
+              >
+                Editar
+              </Button>
+          }
+        
           <Button
             className="mr-3 btn-hover color-11"
             onClick={ cancel }
@@ -101,4 +113,4 @@ const validate = (values: any) => {
 export default reduxForm({
   form: FormEditBowReducerEnum.FORM_EDIT_BOW_SUBMIT,
   validate
-})(FormEditBowComponent);
+})(FormBowComponent);

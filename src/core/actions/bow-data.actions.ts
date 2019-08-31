@@ -23,14 +23,40 @@ export function getBows(id:string): Function {
   };
 }
 
-export function updateBow(idUser: string, bowData: BowModel): Function {
+export function createBow(bowData: BowModel): Function {
   return async (dispatch: Function) => {
-    bowService.updateBow(idUser, bowData, 
+    bowService.createBow(bowData, 
       (resp: any) => {
         dispatch(setBowData(resp.data));
         alert('success', 'Genial!!!', resp.message);
       }, (error: any) => {
-        alert('success', 'Upps...', error.message);
+        alert('error', 'Upps...', error.message);
+      }
+    );
+  };
+}
+
+export function updateBow(bowData: BowModel): Function {
+  return async (dispatch: Function) => {
+    bowService.updateBow(bowData, 
+      (resp: any) => {
+        dispatch(setBowData(resp.data));
+        alert('success', 'Genial!!!', resp.message);
+      }, (error: any) => {
+        alert('error', 'Upps...', error.message);
+      }
+    );
+  };
+}
+
+export function deleteBow(bowId: number): Function {
+  return async (dispatch: Function) => {
+    bowService.deleteBow(bowId, 
+      (resp: any) => {
+        dispatch(setBowData(resp.data));
+        alert('success', 'Genial!!!', resp.message);
+      }, (error: any) => {
+        alert('error', 'Upps...', error.message);
       }
     );
   };
