@@ -7,7 +7,7 @@ interface Props { }
 
 interface State { }
 
-class FaqView extends Component<Props, State> {
+class AboutView extends Component<Props, State> {
   render() {
     return (
       <>
@@ -27,4 +27,4 @@ const mapDispatchToProps = (dispatch: Function) => ({
   //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(FaqView);
+export default connect(mapStateToProps,mapDispatchToProps)(AboutView);
