@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
 import ListBowComponent from './list-bow/list-bow.component';
-import { getBows } from '../../core/actions/bow-data.actions';
+import { getBows, updateBow } from '../../core/actions/bow-data.actions';
 import { BowModel } from '../../core/models/bow.model';
 import { UserDataModel } from '../../core/models/user-data.model';
 import { alertQuestion } from '../../shared/swal/swal.shared';
@@ -11,6 +11,7 @@ import { TitleComponent } from '../../shared/title/title.component';
 
 interface Props { 
   getBows: Function;
+  updateBow: Function;
   bowData: Array<BowModel>;
   userData: UserDataModel;
 }
@@ -45,8 +46,9 @@ class BowView extends Component<Props, State> {
   }
 
   private onEdit(formData: BowModel): void {
+    const { updateBow, userData } = this.props;
     this.showModal();
-    console.log(formData);
+    updateBow(userData.uid, formData);
   }
 
   private onDelete(id: number): void {
@@ -97,7 +99,8 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  getBows: (id: string) => dispatch(getBows(id))
+  getBows: (id: string) => dispatch(getBows(id)),
+  updateBow: (idUser: string, bowData: BowModel) => dispatch(updateBow(idUser, bowData))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(BowView);

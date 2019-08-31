@@ -21,6 +21,19 @@ class BowService {
       }
     );
   }
+
+  public updateBow(idUser: string, bowData: any, onSuccess: Function , onError: Function): void {
+    bowData.userId = idUser;
+
+    this.petition.post(`${this.baseUrl}/updateBow`, bowData,
+      (resp: any) => {
+        onSuccess(resp);
+      }, 
+      (error: any) => {
+        onError(error);
+      }
+    );
+  }
 }
 
 export default BowService;

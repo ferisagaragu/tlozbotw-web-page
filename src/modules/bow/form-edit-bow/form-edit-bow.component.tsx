@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
+import { renderTextField, renderTextArea } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormEditBowReducerEnum } from '../../../core/enums/form-edit-bow-reducer.enum';
 import { BowModel } from '../../../core/models/bow.model';
 import { Button } from 'react-bootstrap';
@@ -46,7 +46,7 @@ class FormEditBowComponent extends Component<Props, State> {
         <Field 
           className="form-control"
           name="description"
-          component={ renderTextField }
+          component={ renderTextArea }
           label="Descripción"
         />
         

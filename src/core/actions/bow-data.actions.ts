@@ -17,7 +17,20 @@ export function getBows(id:string): Function {
         dispatch(setBowData(resp));
       }, 
       (error: any) => {
-        alert('error', 'Upps', error.message);
+        alert('error', 'Upps...', error.message);
+      }
+    );
+  };
+}
+
+export function updateBow(idUser: string, bowData: BowModel): Function {
+  return async (dispatch: Function) => {
+    bowService.updateBow(idUser, bowData, 
+      (resp: any) => {
+        dispatch(setBowData(resp.data));
+        alert('success', 'Genial!!!', resp.message);
+      }, (error: any) => {
+        alert('success', 'Upps...', error.message);
       }
     );
   };
