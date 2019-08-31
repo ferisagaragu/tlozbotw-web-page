@@ -21,6 +21,38 @@ class BowService {
       }
     );
   }
+
+  public createBow(bowData: BowModel, onSuccess: Function, onError:Function): void {
+    this.petition.post(`${this.baseUrl}/createBow`, bowData, 
+      (resp: any) => {
+        onSuccess(resp);
+      }, (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
+  public updateBow(bowData: BowModel, onSuccess: Function , onError: Function): void {
+    this.petition.put(`${this.baseUrl}/updateBow`, bowData,
+      (resp: any) => {
+        onSuccess(resp);
+      }, 
+      (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
+  public deleteBow(bowId: number, onSuccess: Function , onError: Function): void {
+    this.petition.delete(`${this.baseUrl}/deleteBow?id=${bowId}`,
+      (resp: any) => {
+        onSuccess(resp);
+      }, 
+      (error: any) => {
+        onError(error);
+      }
+    );
+  }
 }
 
 export default BowService;

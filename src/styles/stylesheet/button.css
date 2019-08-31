@@ -1,3 +1,5 @@
+/* https://codepen.io/JavaScriptJunkie/pen/pPRooV */
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -91,4 +93,9 @@
 .btn-hover.color-11 {
   background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  
   box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}
+
+.btn-hover.color-12 {
+  background-image: linear-gradient(to right, #757575, #90A4AE, #78909C, #607D8B);  
+  box-shadow: 0 5px 15px #B0BEC5;
 }
