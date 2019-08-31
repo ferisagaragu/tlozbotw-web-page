@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import { store } from './config/app.config';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'animate.css';
 import './styles/stylesheet/index.css';
 import './styles/stylesheet/button.css';
 

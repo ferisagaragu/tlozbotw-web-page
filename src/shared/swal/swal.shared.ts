@@ -25,4 +25,19 @@ export const alert = (iconType: "success" | "error" | "warning" | "info" | "ques
   });
 }
 
+export const alertQuestion = 
+(iconType: "success" | "error" | "warning" | "info" | "question", title: string, text: string, onAccept: Function) => {
+  Swal.fire({
+    title,
+    text,
+    type: iconType,
+    showCancelButton: true,
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.value) {
+      onAccept();
+    }
+  });
+}
+
 export default swal;

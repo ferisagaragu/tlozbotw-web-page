@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import './list-bow.css';
 import CardBowComponent from '../card-bow/card-bow.component';
 import { Row, Col } from 'react-bootstrap';
 import { BowModel } from '../../../core/models/bow.model';
 import key from '../../../shared/key/react-elements.key';
+import './list-bow.css';
 
 interface Props { 
   bows: Array<BowModel>;
+  onDelete: Function;
+  onEdit: Function;
+  className: string;
 }
 
 interface State { }
@@ -14,7 +17,7 @@ interface State { }
 class ListBowComponent extends Component<Props, State> {
 
   private renderBows() {
-    const { bows } = this.props;
+    const { bows, onDelete, onEdit } = this.props;
     if (bows) {
       return bows.map((bow: BowModel) => (
         <Col md={ 4 } key={ key() } className="mb-5"> 
@@ -23,7 +26,11 @@ class ListBowComponent extends Component<Props, State> {
             srcImage={ bow.img }
             damageBow={ bow.damage }
             descriptionBow={ bow.description }
-          ></CardBowComponent>
+            mode={ 1 }
+            onDelete={ () => onDelete(bow.id) }
+            onEdit={ () => onEdit(bow) }
+          >
+          </CardBowComponent>
         </Col>
       ));
     } else {
@@ -35,8 +42,10 @@ class ListBowComponent extends Component<Props, State> {
   }
 
   render() {
+    const { className } = this.props;
+
     return (
-      <Row>
+      <Row className={ className }> 
         { this.renderBows() }
       </Row>
     );
