@@ -22,8 +22,8 @@ export const makers: Array<MakerModel> = [
       'Gestion general'
     ],
     about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga obcaecati veniam maxime delectus dolores nobis earum! Reprehenderit repellat, asperiores, alias corrupti illum amet officiis quo architecto ut voluptatem voluptas blanditiis?',
-    facebook: 'https://www.facebook.com/medina.lopez.enid',
-    twitter: 'https://twitter.com/SailorMiiau',
-    github: 'https://github.com/Miiaauu'
+    facebook: 'https://www.facebook.com/Fernnypay95',
+    twitter: 'https://twitter.com/fernnypay95',
+    github: 'https://github.com/ferisagaragu'
   }
 ]; 

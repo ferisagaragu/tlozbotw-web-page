@@ -39,7 +39,7 @@ class BurgerMenuComponent extends Component<Props, State> {
       if (locationName === menu.url) {
         return (
           <label 
-            className="menu-element"
+            className="menu-element mb-3"
             key={ key() } 
             onClick={ () => this.onSelect(menu.url, location, history) }
           >
@@ -52,7 +52,7 @@ class BurgerMenuComponent extends Component<Props, State> {
       } else {
         return (
           <label 
-            className="menu-element"
+            className="menu-element mb-3"
             key={ key() } 
             onClick={ () => this.onSelect(menu.url, location, history) }
           >

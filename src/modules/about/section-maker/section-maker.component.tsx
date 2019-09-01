@@ -3,8 +3,8 @@ import { Col, Card } from 'react-bootstrap';
 import facebookIcon from '../../../styles/img/facebook-icon.png';
 import twitterIcon from '../../../styles/img/twitter-icon.png';
 import gitHubIcon from '../../../styles/img/github-icon.png';
-import './section-maker.css';
 import key from '../../../shared/key/react-elements.key';
+import './section-maker.css';
 
 interface Props {
   img: string;

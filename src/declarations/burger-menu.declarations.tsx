@@ -9,7 +9,7 @@ const burgerMenu: Array<BurgerMenuModel> = [
     label: 'Pagína principal',
     url: 'home'
   },{
-    icon: <FontAwesomeIcon className="icon-awesome" icon="home" />,
+    icon: <FontAwesomeIcon className="icon-awesome" icon="carrot" />,
     label: 'Materiales',
     url: 'materials'
   },{

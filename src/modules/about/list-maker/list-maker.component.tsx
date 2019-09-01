@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import SectionMakerComponent from '../section-maker/section-maker.component';
 import { MakerModel } from '../../../core/models/maker.model';
 import { Row } from 'react-bootstrap';
-import './list-maker.css';
 import key from '../../../shared/key/react-elements.key';
+import './list-maker.css';
 
 interface Props { 
   makers: Array<MakerModel>;
@@ -35,7 +35,7 @@ class ListMakerComponent extends Component<Props, State> {
     const { className } = this.props;
 
     return (
-      <Row className={ className }>
+      <Row className={ `${className} justify-content-md-center` }>
         { this.renderMakers() }
       </Row>
     );
