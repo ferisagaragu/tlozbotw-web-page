@@ -3,9 +3,11 @@ import SectionMakerComponent from '../section-maker/section-maker.component';
 import { MakerModel } from '../../../core/models/maker.model';
 import { Row } from 'react-bootstrap';
 import './list-maker.css';
+import key from '../../../shared/key/react-elements.key';
 
 interface Props { 
-  makers: Array<MakerModel>
+  makers: Array<MakerModel>;
+  className: string;
 }
 
 interface State { }
@@ -17,6 +19,7 @@ class ListMakerComponent extends Component<Props, State> {
 
     return makers.map((maker: MakerModel) => (
       <SectionMakerComponent
+        key={ key() }
         img={ maker.img } 
         name={ maker.name }
         jobs={ maker.jobs }
@@ -29,8 +32,10 @@ class ListMakerComponent extends Component<Props, State> {
   }
   
   render() {
+    const { className } = this.props;
+
     return (
-      <Row>
+      <Row className={ className }>
         { this.renderMakers() }
       </Row>
     );

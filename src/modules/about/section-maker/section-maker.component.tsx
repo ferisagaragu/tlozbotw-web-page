@@ -4,6 +4,7 @@ import facebookIcon from '../../../styles/img/facebook-icon.png';
 import twitterIcon from '../../../styles/img/twitter-icon.png';
 import gitHubIcon from '../../../styles/img/github-icon.png';
 import './section-maker.css';
+import key from '../../../shared/key/react-elements.key';
 
 interface Props {
   img: string;
@@ -43,12 +44,12 @@ class SectionMakerComponent extends Component<Props, State> {
 
             {
               jobs.map((job: string) => (
-                <>
+                <div key={ key() }>
                   <label className="job">
                     { job }
                   </label>
                   <br />
-                </>
+                </div>
               ))
             }
 

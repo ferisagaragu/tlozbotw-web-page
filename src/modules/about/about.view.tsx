@@ -11,7 +11,8 @@ class AboutView extends Component<Props, State> {
   render() {
     return (
       <>
-        <ListMakerComponent 
+        <ListMakerComponent
+          className="rotateInDownLeft-animation"
           makers={ makers }
         />
       </>

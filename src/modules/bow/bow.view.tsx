@@ -109,7 +109,7 @@ class BowView extends Component<Props, State> {
         />
 
         <ListBowComponent
-          className="animated fadeInRight delay-1s"
+          className="fadeInRight-animation"
           bows={ bowData }
           userRole={ userData.role }
           onDelete={ (id: number) => this.onDelete(id) }

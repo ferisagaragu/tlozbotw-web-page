@@ -6,7 +6,7 @@ interface Props {
 
 export const TitleComponent = ({ titleText }: Props) => {
   return (
-    <div className="text-center mb-5 animated fadeInLeft delay-1s">
+    <div className="text-center mb-5 fadeInLeft-animation">
       <hr />
       <h1>{ titleText }</h1>
       <hr />
