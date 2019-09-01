@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
 import ListMakerComponent from './list-maker/list-maker.component';
 import { makers } from '../../declarations/maker.declarations';
+import { TitleComponent } from '../../shared/title/title.component';
 
 interface Props { }
 
 interface State { }
 
-class FaqView extends Component<Props, State> {
+class AboutView extends Component<Props, State> {
   render() {
     return (
       <>
-        <ListMakerComponent 
+        <TitleComponent 
+          titleText="Acerca de"
+        />
+
+        <ListMakerComponent
+          className="bounce-animation"
           makers={ makers }
         />
       </>
@@ -27,4 +33,4 @@ const mapDispatchToProps = (dispatch: Function) => ({
   //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(FaqView);
+export default connect(mapStateToProps,mapDispatchToProps)(AboutView);

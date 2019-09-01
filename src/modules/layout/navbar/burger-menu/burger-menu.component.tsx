@@ -10,14 +10,25 @@ import './burger-menu.css';
 
 interface Props { }
 
-interface State { }
+interface State { 
+  isOpen: boolean;
+}
 
 class BurgerMenuComponent extends Component<Props, State> {
   
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      isOpen: false
+    }
+  }
+
   private onSelect(selected: any, location: any, history: any): void {
     const to = '/' + selected;
     if (location.pathname !== to) {
       history.push(to);
+      this.setState({ isOpen: false });
     }
   }
   
@@ -28,7 +39,7 @@ class BurgerMenuComponent extends Component<Props, State> {
       if (locationName === menu.url) {
         return (
           <label 
-            className="menu-element"
+            className="menu-element mb-3"
             key={ key() } 
             onClick={ () => this.onSelect(menu.url, location, history) }
           >
@@ -41,7 +52,7 @@ class BurgerMenuComponent extends Component<Props, State> {
       } else {
         return (
           <label 
-            className="menu-element"
+            className="menu-element mb-3"
             key={ key() } 
             onClick={ () => this.onSelect(menu.url, location, history) }
           >
@@ -56,11 +67,18 @@ class BurgerMenuComponent extends Component<Props, State> {
   }
 
   render() {
+    const { isOpen } = this.state;
+
     return (
       <Route 
         render={ ({ location, history }: any) => (
           <>
-            <Menu>
+            <Menu
+              isOpen={ isOpen }
+              onStateChange={ (isOpenStatus: any) => { 
+                this.setState({ isOpen: isOpenStatus.isOpen });
+              }}
+            >
               { this.renderMenu(location, history) }        
             </Menu>
             
