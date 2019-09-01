@@ -8,6 +8,8 @@ import { alertQuestion } from '../../shared/swal/swal.shared';
 import FormBowComponent from './form-bow/form-bow.component';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { TitleComponent } from '../../shared/title/title.component';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 interface Props { 
   getBows: Function;
@@ -21,6 +23,7 @@ interface Props {
 interface State {
   modalShow: boolean;
   bowCreateEdit: BowModel;
+  bowSearched: Array<BowModel>;
 }
 
 class BowView extends Component<Props, State> {
@@ -30,7 +33,8 @@ class BowView extends Component<Props, State> {
 
     this.state = {
       modalShow: false,
-      bowCreateEdit: new BowModel({})
+      bowCreateEdit: new BowModel({}),
+      bowSearched: []
     };
   }
 
@@ -47,7 +51,7 @@ class BowView extends Component<Props, State> {
     });
   }
 
-  private onSubmit(formData: BowModel) {
+  private onSubmit(formData: BowModel): void {
     if (formData.id === 0) {
       this.createBow(formData);
     } else {
@@ -74,7 +78,7 @@ class BowView extends Component<Props, State> {
     });
   }
 
-  private createTitle() {
+  private createTitle(): string {
     const { bowCreateEdit } = this.state;
     return (
       bowCreateEdit.name ? 
@@ -84,16 +88,33 @@ class BowView extends Component<Props, State> {
     );
   }
 
+  private createOptions(): Array<any> {
+    const { bowData } = this.props;
+    if (bowData) {
+      return bowData.map((bow: BowModel) => ({ label: bow.name, value: JSON.stringify(bow) }));
+    } else {
+      return [];
+    }
+  }
+
+  private putSearched(selectedData: any): void {
+    const bowSearched: Array<BowModel> = [];
+    
+    if (selectedData) {
+      selectedData.forEach((element: any) => {
+        bowSearched.push(JSON.parse(element.value));
+      });
+    }
+
+    this.setState({ bowSearched });
+  }
+
   render() {
     const { bowData, userData } = this.props;
-    const { modalShow, bowCreateEdit } = this.state;
+    const { modalShow, bowCreateEdit, bowSearched } = this.state;
 
     return (
       <>
-        <TitleComponent 
-          titleText="Arcos"
-        />
-
         <ModalComponent
           size="lg"
           title={ this.createTitle() }
@@ -108,9 +129,23 @@ class BowView extends Component<Props, State> {
           onHide={ () => this.showModal() }
         />
 
+        <TitleComponent 
+          titleText="Arcos"
+        />
+        
+        <Select 
+          className="col-md-12 mb-5 fadeInDownBig-animation"
+          components={ makeAnimated() }
+          options={ this.createOptions() }
+          onChange={ (selectedData: any) => this.putSearched(selectedData) }
+          noOptionsMessage={ () => 'No se encontraron conicidencias con ese Arco' }
+          placeholder="Busca un arco"
+          isMulti
+        />
+
         <ListBowComponent
           className="fadeInRight-animation"
-          bows={ bowData }
+          bows={ bowSearched.length !== 0 ? bowSearched : bowData }
           userRole={ userData.role }
           onDelete={ (id: number) => this.onDelete(id) }
           onEdit={ (bowCreateEdit: BowModel) => this.showModal(bowCreateEdit) }
