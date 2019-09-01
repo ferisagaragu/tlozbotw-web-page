@@ -6,8 +6,9 @@ import {
   faExclamationTriangle,
   faEye,
   faTimes,
-  faAddressCard,
-  faPlus
+  faHardHat,
+  faPlus,
+  faCarrot
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons = [ 
@@ -18,8 +19,9 @@ const icons = [
   faExclamationTriangle,
   faEye,
   faTimes,
-  faAddressCard,
-  faPlus
+  faHardHat,
+  faPlus,
+  faCarrot
 ];
 
 export default icons;

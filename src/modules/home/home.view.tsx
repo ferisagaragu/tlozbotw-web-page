@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
+import { TitleComponent } from '../../shared/title/title.component';
 
 interface Props { }
 
@@ -9,7 +10,9 @@ class HomeView extends Component<Props, State> {
   render() {
     return (
       <>
-        Home  esta renderizado
+        <TitleComponent 
+          titleText="Binevenid@"
+        />
       </>
     );
   }

@@ -1,0 +1,34 @@
+.swing-animation {
+  animation: swing;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: initial;
+}
+
+.bounce-animation {
+  animation: bounce;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: initial;
+}
+
+.fadeInLeft-animation {
+  animation: fadeInLeft;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: initial;
+}
+
+.fadeInRight-animation {
+  animation: fadeInRight;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: initial;
+}
+
+.rotateInDownLeft-animation {
+  animation: rotateInDownLeft;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: initial;
+}

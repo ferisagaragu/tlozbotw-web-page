@@ -9,7 +9,7 @@ const burgerMenu: Array<BurgerMenuModel> = [
     label: 'Pagína principal',
     url: 'home'
   },{
-    icon: <FontAwesomeIcon className="icon-awesome" icon="home" />,
+    icon: <FontAwesomeIcon className="icon-awesome" icon="carrot" />,
     label: 'Materiales',
     url: 'materials'
   },{
@@ -17,9 +17,9 @@ const burgerMenu: Array<BurgerMenuModel> = [
     label: 'Arcos',
     url: 'bow'
   },{
-    icon: <FontAwesomeIcon className="icon-awesome" icon="address-card" />,
-    label: 'FAQ',
-    url: 'faq'
+    icon: <FontAwesomeIcon className="icon-awesome" icon="hard-hat" />,
+    label: 'Acerca de',
+    url: 'about'
   }
 ];
 

@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'animate.css';
 import './styles/stylesheet/index.css';
 import './styles/stylesheet/button.css';
+import './styles/stylesheet/custom-animation.css';
 
 ReactDOM.render(
   <Provider store={ store }>
