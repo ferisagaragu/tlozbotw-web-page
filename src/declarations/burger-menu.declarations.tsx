@@ -11,7 +11,7 @@ const burgerMenu: Array<BurgerMenuModel> = [
   },{
     icon: <FontAwesomeIcon className="icon-awesome" icon="carrot" />,
     label: 'Materiales',
-    url: 'materials'
+    url: 'material'
   },{
     icon: <BowIcon />,
     label: 'Arcos',
