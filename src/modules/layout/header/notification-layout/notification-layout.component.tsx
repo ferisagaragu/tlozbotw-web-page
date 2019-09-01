@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import key from '../../../../shared/key/react-elements.key';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from '../../../../imports/react-router-dom.import';
+import { Link } from 'react-router-dom';
 import { NotificationModel } from '../../../../core/models/notification.model';
 import './notification-layout.css';
 

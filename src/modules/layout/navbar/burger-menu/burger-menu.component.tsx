@@ -1,5 +1,5 @@
 import React, { Component, ReactElement } from 'react';
-import { Route } from '../../../../imports/react-router-dom.import';
+import { Route } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { Container } from 'react-bootstrap';
 import Routing from '../../../../core/routes/routing.routes';

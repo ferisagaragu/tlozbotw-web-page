@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from "../../imports/react-router-dom.import";
+import { Route, Switch } from "react-router";
 import HomeView from '../../modules/home/home.view';
 import BowView from '../../modules/bow/bow.view';
 import AboutView from '../../modules/about/about.view';
