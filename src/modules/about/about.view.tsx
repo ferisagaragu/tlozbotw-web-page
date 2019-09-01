@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
 import ListMakerComponent from './list-maker/list-maker.component';
 import { makers } from '../../declarations/maker.declarations';
+import { TitleComponent } from '../../shared/title/title.component';
 
 interface Props { }
 
@@ -11,8 +12,12 @@ class AboutView extends Component<Props, State> {
   render() {
     return (
       <>
+        <TitleComponent 
+          titleText="Acerca de"
+        />
+
         <ListMakerComponent
-          className="rotateInDownLeft-animation"
+          className="bounce-animation"
           makers={ makers }
         />
       </>
