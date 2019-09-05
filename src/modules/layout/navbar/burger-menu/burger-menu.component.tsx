@@ -32,38 +32,88 @@ class BurgerMenuComponent extends Component<Props, State> {
     }
   }
   
-  private renderMenu(location: any, history: any): Array<ReactElement>  {
-    const locationName = location.pathname.split('/')[1];
-
-    return burgerMenu.map((menu: BurgerMenuModel) => {
-      if (locationName === menu.url) {
-        return (
-          <label 
-            className="menu-element mb-3"
-            key={ key() } 
-            onClick={ () => this.onSelect(menu.url, location, history) }
-          >
-            { menu.icon }
+  private renderElement(
+    menu: BurgerMenuModel, 
+    locationName: string, 
+    location: any, 
+    history: any
+  ): ReactElement {
+    return (
+      <label 
+        className="menu-element mb-3"
+        onClick={ () => this.onSelect(menu.url, location, history) }
+      >
+        { menu.icon }
+        { 
+          locationName === menu.url ?
             <b className="ml-2">
               { menu.label }
             </b>
-          </label>
-        );
-      } else {
-        return (
-          <label 
+          :
+            <span className="ml-2">
+              { menu.label }
+            </span>
+        }
+      </label>
+    );
+  }
+
+  private renderChildren(
+    menu: BurgerMenuModel, 
+    locationName: string, 
+    location: any, 
+    history: any
+  ): ReactElement | undefined {
+    if (menu.children) {
+      return (
+        <div>
+          <label
             className="menu-element mb-3"
-            key={ key() } 
-            onClick={ () => this.onSelect(menu.url, location, history) }
           >
             { menu.icon }
             <span className="ml-2">
               { menu.label }
             </span>
           </label>
-        );
-      }
-    });
+          {
+            menu.children.map((element: BurgerMenuModel) => (
+              <label 
+                className="menu-element mb-3 ml-5"
+                key={ key() } 
+                onClick={ () => this.onSelect(element.url, location, history) }
+              >
+                { element.icon }
+                { 
+                  locationName === element.url ?
+                    <b className="ml-2">
+                      { element.label }
+                    </b>
+                  :
+                    <span className="ml-2">
+                      { element.label }
+                    </span>
+                }
+              </label>
+            ))
+          }
+        </div>
+      );
+    }
+  }
+
+  private renderMenu(location: any, history: any): Array<ReactElement>  {
+    const locationName = location.pathname.split('/')[1];
+
+    return burgerMenu.map((menu: BurgerMenuModel) => (
+      <div key={ key() }>
+        {
+          !menu.children ?
+            this.renderElement(menu, locationName, location, history)
+          : 
+            this.renderChildren(menu, locationName, location, history)
+        }
+      </div>
+    ));
   }
 
   render() {
