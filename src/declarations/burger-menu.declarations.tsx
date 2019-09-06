@@ -11,9 +11,15 @@ const burgerMenu: Array<BurgerMenuModel> = [
     label: 'Pagína principal',
     url: 'home'
   },{
-    icon: <FontAwesomeIcon className="icon-awesome" icon="carrot" />,
-    label: 'Materiales',
-    url: 'material'
+    icon: <FontAwesomeIcon className="icon-awesome" icon="cube" />,
+    label: 'Crafteo',
+    children: [
+      {
+        icon: <FontAwesomeIcon className="icon-awesome" icon="carrot" />,
+        label: 'Materiales',
+        url: 'material'
+      }
+    ]
   },{
     icon: <ArcheryIcon />,
     label: 'Armas de tiro',
