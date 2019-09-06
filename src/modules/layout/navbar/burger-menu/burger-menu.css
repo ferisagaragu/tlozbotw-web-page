@@ -53,4 +53,20 @@
 
 .menu-element {
   cursor: pointer;
+  width: 100% !important;
+}
+
+.navbar-children {
+  padding: 0px !important;
+  margin: 0px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.btn-label {
+  padding: 0px !important;
+  margin: 0px !important;
+  color: #B99F65 !important;
+  font-size: 1.02em !important;
+  outline:0 !important;
 }

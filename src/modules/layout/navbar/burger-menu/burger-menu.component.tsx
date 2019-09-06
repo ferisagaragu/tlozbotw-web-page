@@ -1,7 +1,7 @@
 import React, { Component, ReactElement } from 'react';
 import { Route } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
-import { Container } from 'react-bootstrap';
+import { Container, Accordion, Button, Card } from 'react-bootstrap';
 import Routing from '../../../../core/routes/routing.routes';
 import burgerMenu from '../../../../declarations/burger-menu.declarations';
 import { BurgerMenuModel } from '../../../../core/models/burger-menu.model';
@@ -65,38 +65,52 @@ class BurgerMenuComponent extends Component<Props, State> {
     history: any
   ): ReactElement | undefined {
     if (menu.children) {
+      const event = key();
+
       return (
-        <div>
-          <label
-            className="menu-element mb-3"
-          >
-            { menu.icon }
-            <span className="ml-2">
-              { menu.label }
-            </span>
-          </label>
-          {
-            menu.children.map((element: BurgerMenuModel) => (
-              <label 
-                className="menu-element mb-3 ml-5"
-                key={ key() } 
-                onClick={ () => this.onSelect(element.url, location, history) }
+        <Accordion key={ key() } className="navbar-children mb-2">
+          <Card className="navbar-children">
+            <Card.Header className="navbar-children">
+              <Accordion.Toggle 
+                as={ Button } 
+                variant="label" 
+                eventKey={ event }
               >
-                { element.icon }
-                { 
-                  locationName === element.url ?
-                    <b className="ml-2">
-                      { element.label }
-                    </b>
-                  :
-                    <span className="ml-2">
-                      { element.label }
-                    </span>
+                <label>
+                  { menu.icon }
+                  <span className="ml-2">
+                    { menu.label }
+                  </span>
+                </label>
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey={ event }>
+              <Card.Body className="navbar-children">
+                {
+                  menu.children.map((element: BurgerMenuModel) => (
+                    <label 
+                      className="menu-element ml-4"
+                      key={ key() } 
+                      onClick={ () => this.onSelect(element.url, location, history) }
+                    >
+                      { element.icon }
+                      { 
+                        locationName === element.url ?
+                          <b className="ml-2">
+                            { element.label }
+                          </b>
+                        :
+                          <span className="ml-2">
+                            { element.label }
+                          </span>
+                      }
+                    </label>
+                  ))
                 }
-              </label>
-            ))
-          }
-        </div>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
       );
     }
   }
