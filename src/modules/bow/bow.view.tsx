@@ -8,8 +8,7 @@ import { alertQuestion } from '../../shared/swal/swal.shared';
 import FormBowComponent from './form-bow/form-bow.component';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { TitleComponent } from '../../shared/title/title.component';
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+import { MultiSelect } from '../../shared/select/select';
 
 interface Props { 
   getBows: Function;
@@ -133,14 +132,12 @@ class BowView extends Component<Props, State> {
           titleText="Arcos"
         />
         
-        <Select 
+        <MultiSelect 
           className="col-md-12 mb-5 fadeInDownBig-animation"
-          components={ makeAnimated() }
           options={ this.createOptions() }
           onChange={ (selectedData: any) => this.putSearched(selectedData) }
-          noOptionsMessage={ () => 'No se encontraron conicidencias con ese Arco' }
+          noOptionsMessage="No se encontraron conicidencias con ese Arco"
           placeholder="Busca un arco"
-          isMulti
         />
 
         <ListBowComponent

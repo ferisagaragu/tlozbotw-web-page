@@ -14,20 +14,41 @@ interface Props {
   submitActions: Function;
 }
 
-interface State { }
+interface State { 
+  urlImage: string;
+}
 
 class FormBowComponent extends Component<Props, State> {
   
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      urlImage: props.initialValues.img
+    }
+  }
+
   render() {
     const { handleSubmit, cancel, submitting, submitActions, initialValues } = this.props;
+    const { urlImage } = this.state;
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
+        
+        <div className="text-center">
+          <img 
+            className="img-bow"
+            alt="bow" 
+            src={ urlImage } 
+          />
+        </div>
+
         <Field 
           className="form-control"
           name="img"
           component={ renderTextField }
           label="Url de imagen"
+          onKeyUp={ (evt: any) => this.setState({ urlImage: evt.target.value }) }
         />
         
         <Field 
