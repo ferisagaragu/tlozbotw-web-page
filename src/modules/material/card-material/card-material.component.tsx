@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Container, Col, Row } from 'react-bootstrap';
 import './card-material.css';
+import { CheckPhoto } from '../../../shared/check-photo/check-photo';
 
 interface Props { 
   name: string;
@@ -38,9 +39,10 @@ class CardMaterialComponent extends Component<Props, State> {
               </Col>
 
               <Col md={ 3 } className="text-right">
-                <button>
-                  { check }
-                </button>
+                <CheckPhoto 
+                  checked={ check }
+                  onCheck={ () => {} }
+                />
               </Col>
             </Row>
 

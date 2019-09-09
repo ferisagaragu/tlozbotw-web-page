@@ -9,7 +9,8 @@ import {
   faHardHat,
   faPlus,
   faCarrot,
-  faCube
+  faCube,
+  faCamera
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons = [ 
@@ -23,7 +24,8 @@ const icons = [
   faHardHat,
   faPlus,
   faCarrot,
-  faCube
+  faCube,
+  faCamera
 ];
 
 export default icons;
