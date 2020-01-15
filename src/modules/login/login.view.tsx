@@ -1,82 +1,42 @@
 import React, { Component } from 'react';
-import { connect } from '../../imports/react-redux.import';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import FormRegistComponent from './form-regist/form-regist.component';
-import FormLoginComponent from './form-login/form-login.component';
-import { login, registerUser } from '../../core/actions/user-data.actions';
-import { UserDataModel } from '../../core/models/user-data.model';
-import StatusLoginComponent from './status-login/status-login.component';
+import { FormLoginComponent } from './form-login/form-login.component';
+import { Container, Row, connect } from 'reactive';
+import { login } from '../../core/actions/user.actions';
 
 interface Props {
   login: Function;
-  registerUser: Function;
-  userData: UserDataModel;
-  statusLogin: boolean;
+  lostPassword: boolean;
 }
 
-interface State { 
-  showRegist: boolean;
-}
+interface State {}
+
 
 class LoginView extends Component<Props, State> {
 
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      showRegist: false
-    }
-  }
-
-  private showRegistModel() {
-    const { showRegist } = this.state;
-    this.setState({ showRegist: !showRegist });
-  }
-
   render() {
-    const { login, statusLogin, registerUser } = this.props;
-    const { showRegist } = this.state;
+    const { login, lostPassword } = this.props;
 
-    return (
+    return(
       <Container>
-        <Row className="justify-content-md-center mt-5">
-          <Col md={ 4 }>
-            <Card>
-              <Card.Body>
-                {
-                  showRegist ? 
-                    <FormRegistComponent 
-                      submitActions={ (formData: any) => registerUser(formData) }
-                      cancel={ () => this.showRegistModel() }
-                      showButtons={ !statusLogin }
-                    />
-                  :
-                    <FormLoginComponent 
-                      submitActions={ (formData: any) => login(formData.email, formData.password) }
-                      cancel={ () => this.showRegistModel() }
-                      showButtons={ !statusLogin }
-                    />
-                }
-                {
-                  statusLogin && 
-                    <StatusLoginComponent />
-                }
-              </Card.Body>
-            </Card>  
-          </Col>
+        <Row className="justify-content-md-center login-animation">
+          <FormLoginComponent
+            submitActions={ (formData: any) => login(formData) }
+            cancel={ () => {} }
+            islostPassword={ lostPassword }
+          />
         </Row>
       </Container>
     );
   }
+
 }
 
 const mapStateToProps = (state: any) => ({
-  statusLogin: state.statusLogin
+  lostPassword: state.lostPassword
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  login: (email: string, password: string) => dispatch(login(email, password)),
-  registerUser: (userRegist: any) => dispatch(registerUser(userRegist))
+  login: (formData: any) => dispatch(login(formData.email, formData.password))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginView);

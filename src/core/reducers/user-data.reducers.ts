@@ -1,23 +1,16 @@
-import { Action } from '../interfaces/action.interface';
-import { UserDataReducerEnum } from '../enums/user-data-reducer.enum';
+import { Action } from 'reactive';
+import { UserReducerEnum } from '../enums/user-reducer.enum';
 
 export const userData = (state = {}, action: Action) => {
   switch(action.type) {
-    case UserDataReducerEnum.SET_USER_DATA: return action.payload;
+    case UserReducerEnum.SET_USER_DATA: return action.payload;
     default: return state;
   }
 }
 
-export const statusLogin = (state = {}, action: Action) => {
+export const lostPassword = (state = {}, action: Action) => {
   switch(action.type) {
-    case UserDataReducerEnum.SET_STATUS_LOGIN: return action.payload;
-    default: return state;
-  }
-}
-
-export const notifications = (state = {}, action: Action) => {
-  switch(action.type) {
-    case UserDataReducerEnum.SET_NOTIFICATIONS: return action.payload;
+    case UserReducerEnum.SET_LOST_PASSWORD: return action.payload;
     default: return state;
   }
 }

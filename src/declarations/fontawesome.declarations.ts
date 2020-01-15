@@ -1,31 +1,7 @@
-import { 
-  faHome,
-  faAtom,
-  faInfoCircle,
-  faBomb,
-  faExclamationTriangle,
-  faEye,
-  faTimes,
-  faHardHat,
-  faPlus,
-  faCarrot,
-  faCube,
-  faCamera
-} from '@fortawesome/free-solid-svg-icons';
+import { awesomeIcons } from 'reactive';
 
-const icons = [ 
-  faHome, 
-  faAtom, 
-  faInfoCircle, 
-  faBomb,
-  faExclamationTriangle,
-  faEye,
-  faTimes,
-  faHardHat,
-  faPlus,
-  faCarrot,
-  faCube,
-  faCamera
+const icons: any = [ 
+  awesomeIcons.faUserAstronaut
 ];
 
 export default icons;
